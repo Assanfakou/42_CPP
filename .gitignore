@@ -2,5 +2,6 @@
 run
 *.o
 *.swap
+*.swp
 *.vscode
 
