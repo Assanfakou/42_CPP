@@ -1,0 +1,6 @@
+*.out
+run
+*.o
+*.swap
+*.vscode
+
