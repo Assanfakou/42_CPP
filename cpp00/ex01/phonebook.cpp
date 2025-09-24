@@ -72,19 +72,57 @@ class Contact
 
 class PhoneBook
 {
-	Contact contact[8];
+	Contact contacts[8];
+	int index;
+	int size;
+	public:
+		PhoneBook()
+		{
+			index = 0;
+			size = 0;
+		}
+		void addContact(const Contact& c)
+		{
+			contacts[index] = c;
+			index = (index + 1) % 8;
+			if (size < 8)
+				size++;
+		}
+		int get_size()
+		{
+			return size;
+		}
+		void prinTable();
 };
 
-void print_table(int i)
+std::string formatField(const std::string& str)
 {
-	if (i == 0)
+    if (str.length() > 10)
+        return str.substr(0, 9) + ".";
+    return std::string(10 - str.length(), ' ') + str;
+}
+
+void PhoneBook::prinTable()
+{
+	std::cout << "---------------------------------------------" << std::endl;
+	std::cout << "|     index|First Name|Last Name |Nickname  |" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
+	if (size == 0)
 	{
-		std::cout << "--------------------------------------------" << std::endl;
-		std::cout << "      index|First Name |Last Name |Nickname |" << std::endl;
+		std::cout << "|             Nothing To Display           |" << std::endl;	
 		std::cout << "--------------------------------------------" << std::endl;
 	}
 	else
-		std::cout << "--------------------------------------------" << std::endl;
+	{
+		for (int i = 0; i < size; i++)
+		{
+			std::cout << "|" << "         " << i;
+			std::cout << "|" << formatField(contacts[i].get_f_name());
+			std::cout << "|" << formatField(contacts[i].get_l_name());
+			std::cout << "|" << formatField(contacts[i].getNickname()) << "|\n";
+			std::cout << "---------------------------------------------" << std::endl;
+		}
+	}
 }
 
 std::string get_line(std::string to_get)
@@ -95,6 +133,8 @@ std::string get_line(std::string to_get)
 	{
 		std::cout << to_get;
 		std::getline(std::cin, line);
+		if (line == "")
+			exit(1);
 		if (line.empty())
 			std::cout << "Valide argument please !" << std::endl;
 	}
@@ -106,11 +146,14 @@ int main ()
 	std::string command;
 	std::string line;
 	Contact con;
+	PhoneBook p;
 
 	while (line.compare("EXIT"))
 	{
 		std::cout << "ADD || SEARCH || EXIT :";
 		std::getline(std::cin, command);
+		if (command == "")
+			return 1;
 		if (!command.compare("ADD"))
 		{
 			con.set_f_name(get_line("First Name : "));
@@ -118,10 +161,11 @@ int main ()
 			con.set_nickname(get_line("Nickname : "));
 			con.set_p_number(get_line("Phone Number : "));
 			con.set_darkest_secret(get_line("Darkest Secret : "));
+			p.addContact(con);
 		}
 		else if (!command.compare("SEARCH"))
 		{
-			con.print_data();
+			p.prinTable();
 		}
 		else if (!command.compare("EXIT"))
 			return 0;
