@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
@@ -93,6 +94,10 @@ class PhoneBook
 			return size;
 		}
 		void prinTable();
+		void print_index(int index)
+		{
+			contacts[index].print_data();
+		}
 };
 
 std::string formatField(const std::string& str)
@@ -133,7 +138,7 @@ std::string get_line(std::string to_get)
 	{
 		std::cout << to_get;
 		std::getline(std::cin, line);
-		if (line == "")
+		if (std::cin.eof())
 			exit(1);
 		if (line.empty())
 			std::cout << "Valide argument please !" << std::endl;
@@ -152,7 +157,7 @@ int main ()
 	{
 		std::cout << "ADD || SEARCH || EXIT :";
 		std::getline(std::cin, command);
-		if (command == "")
+		if (std::cin.eof())
 			return 1;
 		if (!command.compare("ADD"))
 		{
@@ -165,9 +170,21 @@ int main ()
 		}
 		else if (!command.compare("SEARCH"))
 		{
+			std::string index;
+			int i;
+
 			p.prinTable();
+			std::cout << "Contact Index (-1 to cancel) : ";
+			std::getline(std::cin, index);
+			i = std::stoi(index);
+			if (i < 0)
+				continue ;
+			p.print_index(i);
+			
 		}
 		else if (!command.compare("EXIT"))
 			return 0;
+		else
+			std::cout << "Valide argument please !" << std::endl;
 	}
 }
