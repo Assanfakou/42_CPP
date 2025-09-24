@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+#define RED "\033[0;31m"
+#define RESET "\033[0m"
+
 class Contact
 {
 	std::string f_Name;
@@ -17,98 +20,110 @@ class Contact
 			p_Number = "";
 			darkest_Secret = "";
 		}
-		void set_f_name(void)
+		void set_f_name(std::string f_Name)
 		{
-			std::string line;
-			while (line.empty())
-			{
-				std::cout <<"First Name :";
-				std::getline(std::cin, line);
-				if (line.empty())
-					std::cout <<"please enter your First Name\n";
-			}
-			this->f_Name = line;
+			this->f_Name = f_Name;
 		}
-		void set_l_name(void)
+		void set_l_name(std::string l_Name)
 		{
-			std::string line;
-
-			while (line.empty())
-			{
-				std::cout <<"Last Name :";
-				std::getline(std::cin, line);
-				if (line.empty())
-					std::cout <<"please enter your Last Name\n";
-			}
-			this->l_Name = line;
+			this->l_Name = l_Name;
 		}
-		void set_nickname(void)
+		void set_nickname(std::string Nickname)
 		{
-			std::string line;
-
-			while (line.empty())
-			{
-				std::cout <<"Nickname :";
-				std::getline(std::cin, line);
-				if (line.empty())
-					std::cout <<"please enter your nickname\n";
-			}
-			this->nickname = line;
+			this->nickname = Nickname;
 		}
-		void set_p_number(void)
+		void set_p_number(std::string Number)
 		{
-			std::string line;
-
-			while (line.empty())
-			{
-				std::cout <<"Phone Number :";
-				std::getline(std::cin, line);
-				if (line.empty())
-					std::cout <<"please enter your Phone Number\n";
-			}
-			this->p_Number = line;
+			this->p_Number = Number;
 		}
-		void set_darkest_secret(void)
+		void set_darkest_secret(std::string DarkSecret)
 		{
-			std::string line;
-
-			while (line.empty())
-			{
-				std::cout <<"Darkes Secret :";
-				std::getline(std::cin, line);
-				if (line.empty())
-					std::cout <<"please enter your Darkest Secret\n";
-			}
-			this->darkest_Secret = line;
+			this->darkest_Secret = DarkSecret;
 		}
-		void print()
+		std::string get_f_name()
 		{
-			std::cout << f_Name << std::endl;
-			std::cout << l_Name << std::endl;
-			std::cout << nickname << std::endl;
-			std::cout << p_Number << std::endl;
-			std::cout << darkest_Secret << std::endl;
+			return this->f_Name;
+		}
+		std::string get_l_name()
+		{
+			return this->l_Name;
+		}
+		std::string getNickname()
+		{
+			return this->nickname;
+		}
+		std::string getP_Number()
+		{
+			return this->p_Number;
+		}
+		std::string getDarkestSecret()
+		{
+			return this->darkest_Secret;
+		}
+		void print_data()
+		{
+			std::cout << "First Name : " << f_Name << std::endl;
+			std::cout << "Last Name : " << l_Name << std::endl;
+			std::cout << "Nickname : " << nickname << std::endl;
+			std::cout << "Phone Number : " << p_Number << std::endl;
+			std::cout << "Darkest Secret : " << darkest_Secret << std::endl;
 		}
 };
 
+class PhoneBook
+{
+	Contact contact[8];
+};
+
+void print_table(int i)
+{
+	if (i == 0)
+	{
+		std::cout << "--------------------------------------------" << std::endl;
+		std::cout << "      index|First Name |Last Name |Nickname |" << std::endl;
+		std::cout << "--------------------------------------------" << std::endl;
+	}
+	else
+		std::cout << "--------------------------------------------" << std::endl;
+}
+
+std::string get_line(std::string to_get)
+{
+
+	std::string line;
+	while (line.empty())
+	{
+		std::cout << to_get;
+		std::getline(std::cin, line);
+		if (line.empty())
+			std::cout << "Valide argument please !" << std::endl;
+	}
+	return line;
+}
+	
 int main ()
 {
 	std::string command;
 	std::string line;
 	Contact con;
 
-	while (1)
+	while (line.compare("EXIT"))
 	{
 		std::cout << "ADD || SEARCH || EXIT :";
 		std::getline(std::cin, command);
-		if (command.compare("ADD") == 0)
+		if (!command.compare("ADD"))
 		{
-			con.set_f_name();
-			con.set_l_name();
-			con.set_nickname();
-			con.set_p_number();
-			con.set_darkest_secret();
+			con.set_f_name(get_line("First Name : "));
+			con.set_l_name(get_line("Last Name : "));
+			con.set_nickname(get_line("Nickname : "));
+			con.set_p_number(get_line("Phone Number : "));
+			con.set_darkest_secret(get_line("Darkest Secret : "));
 		}
-		con.print();
+		else if (!command.compare("SEARCH"))
+		{
+			con.print_data();
+		}
+		else if (!command.compare("EXIT"))
+			return 0;
 	}
 }
