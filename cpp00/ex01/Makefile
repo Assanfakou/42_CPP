@@ -1,20 +1,21 @@
-cc = c++
-CCFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = phonebook.cpp
 
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRC:%.cpp=%.o)
 
 NAME = phonebook
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o : %.c
-	@$(cc) $(CCFLAGS) -c $< -o $@
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 clean :
-	rm -f %.o
+	rm -f $(OBJ)
 
 fclean : clean
 	rm -f $(NAME)

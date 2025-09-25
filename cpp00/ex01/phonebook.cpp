@@ -1,104 +1,4 @@
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-
-#define RED "\033[0;31m"
-#define RESET "\033[0m"
-
-class Contact
-{
-	std::string f_Name;
-	std::string l_Name;
-	std::string nickname;
-	std::string p_Number;
-	std::string darkest_Secret;
-	public:
-		Contact()
-		{
-			f_Name = "";
-			l_Name = "";
-			nickname = "";
-			p_Number = "";
-			darkest_Secret = "";
-		}
-		void set_f_name(std::string f_Name)
-		{
-			this->f_Name = f_Name;
-		}
-		void set_l_name(std::string l_Name)
-		{
-			this->l_Name = l_Name;
-		}
-		void set_nickname(std::string Nickname)
-		{
-			this->nickname = Nickname;
-		}
-		void set_p_number(std::string Number)
-		{
-			this->p_Number = Number;
-		}
-		void set_darkest_secret(std::string DarkSecret)
-		{
-			this->darkest_Secret = DarkSecret;
-		}
-		std::string get_f_name()
-		{
-			return this->f_Name;
-		}
-		std::string get_l_name()
-		{
-			return this->l_Name;
-		}
-		std::string getNickname()
-		{
-			return this->nickname;
-		}
-		std::string getP_Number()
-		{
-			return this->p_Number;
-		}
-		std::string getDarkestSecret()
-		{
-			return this->darkest_Secret;
-		}
-		void print_data()
-		{
-			std::cout << "First Name : " << f_Name << std::endl;
-			std::cout << "Last Name : " << l_Name << std::endl;
-			std::cout << "Nickname : " << nickname << std::endl;
-			std::cout << "Phone Number : " << p_Number << std::endl;
-			std::cout << "Darkest Secret : " << darkest_Secret << std::endl;
-		}
-};
-
-class PhoneBook
-{
-	Contact contacts[8];
-	int index;
-	int size;
-	public:
-		PhoneBook()
-		{
-			index = 0;
-			size = 0;
-		}
-		void addContact(const Contact& c)
-		{
-			contacts[index] = c;
-			index = (index + 1) % 8;
-			if (size < 8)
-				size++;
-		}
-		int get_size()
-		{
-			return size;
-		}
-		void prinTable();
-		void print_index(int index)
-		{
-			contacts[index].print_data();
-		}
-};
+#include "PhoneBook.hpp"
 
 std::string formatField(const std::string& str)
 {
@@ -176,7 +76,7 @@ int main ()
 			p.prinTable();
 			std::cout << "Contact Index (-1 to cancel) : ";
 			std::getline(std::cin, index);
-			i = std::stoi(index);
+			i = std::atoi(index.c_str());
 			if (i < 0)
 				continue ;
 			p.print_index(i);
