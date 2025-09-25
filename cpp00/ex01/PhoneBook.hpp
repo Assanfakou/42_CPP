@@ -1,7 +1,10 @@
-#include "Contact.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include "Contact.hpp"
 
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
@@ -34,3 +37,4 @@ class PhoneBook
 			contacts[index].print_data();
 		}
 };
+# endif

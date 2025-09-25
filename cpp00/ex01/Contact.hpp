@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
-#define RED "\033[0;31m"
-#define RESET "\033[0m"
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
 class Contact
 {
@@ -69,3 +65,4 @@ class Contact
 			std::cout << "Phone Number : " << p_Number << std::endl; std::cout << "Darkest Secret : " << darkest_Secret << std::endl;
 		}
 };
+# endif
