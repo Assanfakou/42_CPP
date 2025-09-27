@@ -17,23 +17,23 @@ class Contact
 			p_Number = "";
 			darkest_Secret = "";
 		}
-		void set_f_name(std::string f_Name)
+		void set_f_name(const std::string& f_Name)
 		{
 			this->f_Name = f_Name;
 		}
-		void set_l_name(std::string l_Name)
+		void set_l_name(const std::string& l_Name)
 		{
 			this->l_Name = l_Name;
 		}
-		void set_nickname(std::string Nickname)
+		void set_nickname(const std::string& Nickname)
 		{
 			this->nickname = Nickname;
 		}
-		void set_p_number(std::string Number)
+		void set_p_number(const std::string& Number)
 		{
 			this->p_Number = Number;
 		}
-		void set_darkest_secret(std::string DarkSecret)
+		void set_darkest_secret(const std::string& DarkSecret)
 		{
 			this->darkest_Secret = DarkSecret;
 		}
