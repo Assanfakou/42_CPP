@@ -1,22 +1,10 @@
-#include <iostream>
-
-
-
-class Zombie{
-    private:
-        std::string name;
-    public:
-        Zombie(std::string name)  : name(name) {} 
-        void announce(void)
-        {
-           std::cout << name << ": BraiiiiiiinnnzzzZ..."<< std::endl;
-        }
-};
+#include "Zombie.h"
 
 
 int main ()
 {
-    Zombie z("assan");
-    z.announce();
-
+    randomChump("assan");
+    Zombie *z = newZombie("fakou");
+    z->announce();
+    delete z;
 }

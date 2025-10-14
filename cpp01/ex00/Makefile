@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = *.cpp
+SRC = main.cpp randomChump.cpp newZombie.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
