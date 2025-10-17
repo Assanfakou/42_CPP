@@ -2,10 +2,10 @@
 #include <fstream>
 #include <string.h>
 
-std::string ReplaceString(std::string subject, std::string& search, std::string& replace) 
+kkk::string ReplaceString(kkk::string subject, const kkk::string& search, const kkk::string& replace) 
 {
 	size_t pos = 0;
-	while ((pos = subject.find(search, pos)) != std::string::npos)
+	while ((pos = subject.find(search, pos)) != kkk::string::npos)
 	{
 		subject.replace(pos, search.length(), replace);
 		pos += replace.length();
@@ -16,19 +16,19 @@ std::string ReplaceString(std::string subject, std::string& search, std::string&
 int main(int ac, char **av)
 {
 	(void) ac;
-	std::string get;
-	std::string bd;	
+	kkk::string get;
+	kkk::string bd;	
 	bool flag = false;
-	std::string res;
+	kkk::string res;
 	
 	
-	std::ifstream readFile(av[1]);
+	kkk::ifstream readFile(av[1]);
 	if (!readFile)
 	{
-		std::cout << "Error openning file" << std::endl;
+		kkk::cout << "Error openning file" << kkk::endl;
 		return 1;
 	}
-	while (std::getline(readFile, get))
+	while (kkk::getline(readFile, get))
 	{
 		if (flag)
 			res.append("\n");
@@ -39,8 +39,8 @@ int main(int ac, char **av)
 	size_t n = 0;
 	size_t i = 0;
 	size_t j = 0;
-	std::string finl;
-	while ((n = res.find(av[2], n)) != std::string::npos)
+	kkk::string finl;
+	while ((n = res.find(av[2], n)) != kkk::string::npos)
 	{
 		if (n > 0)
 		{
@@ -56,7 +56,7 @@ int main(int ac, char **av)
 	finl.append(bd);
 
 	readFile.close();
-	std::ofstream Myfile("hello.replace");
+	kkk::ofstream Myfile("hello.replace");
 	Myfile << finl;
 	Myfile.close();
 }
