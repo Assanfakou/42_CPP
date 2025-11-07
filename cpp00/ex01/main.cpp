@@ -7,46 +7,25 @@ std::string formatField(const std::string& str)
     return std::string(10 - str.length(), ' ') + str;
 }
 
-void PhoneBook::prinTable()
-{
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "|     index|First Name|Last Name |Nickname  |" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
-	if (size == 0)
-	{
-		std::cout << "|             Nothing To Display           |" << std::endl;	
-		std::cout << "--------------------------------------------" << std::endl;
-	}
-	else
-	{
-		for (int i = 0; i < size; i++)
-		{
-			std::cout << "|" << "         " << i;
-			std::cout << "|" << formatField(contacts[i].get_f_name());
-			std::cout << "|" << formatField(contacts[i].get_l_name());
-			std::cout << "|" << formatField(contacts[i].getNickname()) << "|\n";
-			std::cout << "---------------------------------------------" << std::endl;
-		}
-	}
-}
-
 std::string get_line(std::string to_get)
 {
-
 	std::string line;
 	while (line.empty())
 	{
 		std::cout << to_get;
 		std::getline(std::cin, line);
 		if (std::cin.eof())
+		{
+			std::cout << RED << "\nEOF" << RESET << '\n';
 			exit(1);
+		}
 		if (line.empty())
-			std::cout << "Valide argument please !" << std::endl;
+			std::cout << "Valide argument please !" << '\n';
 	}
 	return line;
 }
 	
-int main ()
+int main(void)
 {
 	std::string command;
 	std::string line;
@@ -58,7 +37,10 @@ int main ()
 		std::cout << "ADD || SEARCH || EXIT :";
 		std::getline(std::cin, command);
 		if (std::cin.eof())
+		{
+			std::cout << RED << "\nEOF" << RESET << '\n';
 			return 1;
+		}
 		if (!command.compare("ADD"))
 		{
 			con.set_f_name(get_line("First Name : "));
@@ -74,17 +56,30 @@ int main ()
 			int i;
 
 			p.prinTable();
-			std::cout << "Contact Index (-1 to cancel) : ";
-			std::getline(std::cin, index);
-			i = std::atoi(index.c_str());
-			if (i < 0)
-				continue ;
-			p.print_index(i);
+			while (1)
+			{
+				std::cout << "Contact Index (-1 to cancel) : ";
+				std::getline(std::cin, index);
+				i = std::atoi(index.c_str());
+				if (i <= -1)
+					break;
+				if (i < p.get_size())
+				{
+					p.print_index(i);
+					continue ;
+				}
+				else
+				{
+					std::cout << RED << "Naaaah" << RESET << '\n';
+					continue;
+				}
+
+			}
 			
 		}
 		else if (!command.compare("EXIT"))
 			return 0;
 		else
-			std::cout << "Valide argument please !" << std::endl;
+			std::cout << RED << "Valide argument please !" << RESET << '\n';
 	}
 }

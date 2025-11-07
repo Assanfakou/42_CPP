@@ -1,5 +1,6 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
+#include <iostream>
 
 class Contact
 {
@@ -9,60 +10,19 @@ class Contact
 	std::string p_Number;
 	std::string darkest_Secret;
 	public:
-		Contact()
-		{
-			f_Name = "";
-			l_Name = "";
-			nickname = "";
-			p_Number = "";
-			darkest_Secret = "";
-		}
-		void set_f_name(const std::string& f_Name)
-		{
-			this->f_Name = f_Name;
-		}
-		void set_l_name(const std::string& l_Name)
-		{
-			this->l_Name = l_Name;
-		}
-		void set_nickname(const std::string& Nickname)
-		{
-			this->nickname = Nickname;
-		}
-		void set_p_number(const std::string& Number)
-		{
-			this->p_Number = Number;
-		}
-		void set_darkest_secret(const std::string& DarkSecret)
-		{
-			this->darkest_Secret = DarkSecret;
-		}
-		std::string get_f_name()
-		{
-			return this->f_Name;
-		}
-		std::string get_l_name()
-		{
-			return this->l_Name;
-		}
-		std::string getNickname()
-		{
-			return this->nickname;
-		}
-		std::string getP_Number()
-		{
-			return this->p_Number;
-		}
-		std::string getDarkestSecret()
-		{
-			return this->darkest_Secret;
-		}
-		void print_data()
-		{
-			std::cout << "First Name : " << f_Name << std::endl;
-			std::cout << "Last Name : " << l_Name << std::endl;
-			std::cout << "Nickname : " << nickname << std::endl;
-			std::cout << "Phone Number : " << p_Number << std::endl; std::cout << "Darkest Secret : " << darkest_Secret << std::endl;
-		}
+		Contact();
+		void set_f_name(const std::string& f_Name);
+		void set_l_name(const std::string& l_Name);
+		void set_nickname(const std::string& Nickname);
+		void set_p_number(const std::string& Number);
+		void set_darkest_secret(const std::string& DarkSecret);
+		std::string get_f_name();
+		std::string get_l_name();
+		std::string getNickname();
+		std::string getP_Number();
+		std::string getDarkestSecret();
+		void print_data();
+		
 };
+
 # endif
