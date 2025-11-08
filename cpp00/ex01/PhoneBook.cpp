@@ -29,3 +29,13 @@ void PhoneBook::addContact(const Contact& c)
     if (size < 8)
         size++;
 }
+
+PhoneBook::PhoneBook() : index(0), size(0) {}
+
+void PhoneBook::print_index(int index) {
+	contacts[index].print_data();
+}
+
+int PhoneBook::get_size() {
+	return size;
+}

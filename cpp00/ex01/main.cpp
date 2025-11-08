@@ -66,14 +66,14 @@ int main(void)
 					std::cout << RED << "\nEOF" << RESET << '\n';
 					exit(1);
 				}
+				i = std::atoi(index.c_str());
+				if (i <= -1)
+					break;
 				if (!std::isdigit(index[0]))
 				{
 					std::cout << RED << "Naaaah" << RESET << '\n';
 					continue;
 				}
-				i = std::atoi(index.c_str());
-				if (i <= -1)
-					break;
 				if (i < p.get_size())
 				{
 					p.print_index(i);

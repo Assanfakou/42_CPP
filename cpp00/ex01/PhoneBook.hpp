@@ -15,11 +15,11 @@ class PhoneBook
 	int index;
 	int size;
 	public:
-		PhoneBook() : index(0), size(0) {}
+		PhoneBook();
 		void addContact(const Contact& c);
-		int get_size(){ return size; }
+		int get_size();
 		void prinTable();
-		void print_index(int index) { contacts[index].print_data(); }
+		void print_index(int index);
 };
 
 std::string formatField(const std::string& str);
