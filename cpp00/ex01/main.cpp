@@ -10,6 +10,7 @@ std::string formatField(const std::string& str)
 std::string get_line(std::string to_get)
 {
 	std::string line;
+
 	while (line.empty())
 	{
 		std::cout << to_get;
@@ -60,6 +61,16 @@ int main(void)
 			{
 				std::cout << "Contact Index (-1 to cancel) : ";
 				std::getline(std::cin, index);
+				if (std::cin.eof())
+				{
+					std::cout << RED << "\nEOF" << RESET << '\n';
+					exit(1);
+				}
+				if (!std::isdigit(index[0]))
+				{
+					std::cout << RED << "Naaaah" << RESET << '\n';
+					continue;
+				}
 				i = std::atoi(index.c_str());
 				if (i <= -1)
 					break;
@@ -73,11 +84,10 @@ int main(void)
 					std::cout << RED << "Naaaah" << RESET << '\n';
 					continue;
 				}
-
 			}
 			
 		}
-		else if (!command.compare("EXIT"))
+		else if (command.compare("EXIT") == 0)
 			return 0;
 		else
 			std::cout << RED << "Valide argument please !" << RESET << '\n';

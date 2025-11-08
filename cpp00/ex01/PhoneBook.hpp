@@ -15,11 +15,7 @@ class PhoneBook
 	int index;
 	int size;
 	public:
-		PhoneBook()
-		{
-			index = 0;
-			size = 0;
-		}
+		PhoneBook() : index(0), size(0) {}
 		void addContact(const Contact& c);
 		int get_size(){ return size; }
 		void prinTable();
