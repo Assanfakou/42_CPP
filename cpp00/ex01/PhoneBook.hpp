@@ -17,7 +17,7 @@ class PhoneBook
 	public:
 		PhoneBook();
 		void addContact(const Contact& c);
-		int get_size();
+		int get_size() { return size;};
 		void prinTable();
 		void print_index(int index);
 };

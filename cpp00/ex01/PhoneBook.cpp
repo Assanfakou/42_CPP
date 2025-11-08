@@ -36,6 +36,6 @@ void PhoneBook::print_index(int index) {
 	contacts[index].print_data();
 }
 
-int PhoneBook::get_size() {
-	return size;
-}
+// int PhoneBook::get_size() {
+// 	return size;
+// }
