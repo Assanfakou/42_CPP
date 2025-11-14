@@ -24,5 +24,6 @@ class Contact
 		void print_data();
 		
 };
+bool checkPrintable(const std::string& line);
 
 # endif

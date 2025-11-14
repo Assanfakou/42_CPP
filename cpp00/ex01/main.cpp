@@ -11,7 +11,7 @@ std::string get_line(std::string to_get)
 {
 	std::string line;
 
-	while (line.empty())
+	while (line.empty() || !checkPrintable(line))
 	{
 		std::cout << to_get;
 		std::getline(std::cin, line);
@@ -20,12 +20,91 @@ std::string get_line(std::string to_get)
 			std::cout << RED << "\nEOF" << RESET << '\n';
 			exit(1);
 		}
-		if (line.empty())
-			std::cout << "Valide argument please !" << '\n';
+		if (line.empty() || !checkPrintable(line))
+			std::cout << RED << "Valide argument please !" << '\n' << RESET;
 	}
 	return line;
 }
 	
+bool checkPrintable(const std::string& line) {
+	size_t i = 0;
+
+	while (i < line.length())
+	{
+		if (std::isprint(line[i]))
+		{
+			if (!std::isalnum(line[i]))
+				return false;
+			i++;
+		}
+		else
+			return false;
+	}
+	return true;
+}
+bool isNum(std::string& line)
+{
+	size_t i = 0;
+
+	while (i < line.length())
+	{
+		if (std::isdigit(line[i]))
+			i++;
+		else
+			return false;
+	}
+	return true;
+}	
+bool isAlphaNum(std::string& line)
+{
+	size_t i = 0;
+
+	while (i < line.length())
+	{
+		if (std::isalnum(line[i]) || line[i] == ' ')
+			i++;
+		else
+			return false;
+	}
+	return true;
+}	
+std::string getDarkestSecret(std::string toGet)
+{
+	std::string line;
+
+	while (line.empty() || !isAlphaNum(line))
+	{
+		std::cout << toGet;
+		std::getline(std::cin, line);
+		if (std::cin.eof())
+		{
+			std::cout << RED << "\nEOF" << RESET << '\n';
+			exit(1);
+		}
+		if (line.empty() || !isAlphaNum(line))
+			std::cout << RED << "Valide argument please !" << '\n' << RESET;
+	}
+	return line;
+}
+std::string getNumber(std::string toGet)
+{
+	std::string line;
+
+	while (line.empty() || !isNum(line))
+	{
+		std::cout << toGet;
+		std::getline(std::cin, line);
+		if (std::cin.eof())
+		{
+			std::cout << RED << "\nEOF" << RESET << '\n';
+			exit(1);
+		}
+		if (line.empty() || !isNum(line))
+			std::cout << RED << "Valide argument please !" << '\n' << RESET;
+	}
+	return line;
+}
+
 int main(void)
 {
 	std::string command;
@@ -47,8 +126,8 @@ int main(void)
 			con.set_f_name(get_line("First Name : "));
 			con.set_l_name(get_line("Last Name : "));
 			con.set_nickname(get_line("Nickname : "));
-			con.set_p_number(get_line("Phone Number : "));
-			con.set_darkest_secret(get_line("Darkest Secret : "));
+			con.set_p_number(getNumber("Phone Number : "));
+			con.set_darkest_secret(getDarkestSecret("Darkest Secret : "));
 			p.addContact(con);
 		}
 		else if (!command.compare("SEARCH"))
