@@ -1,7 +1,6 @@
 #include "Zombie.h"
 
-
-int main ()
+int main(void)
 {
     randomChump("assan");
     Zombie *z = newZombie("fakou");
