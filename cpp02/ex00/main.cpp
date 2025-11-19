@@ -1,9 +1,21 @@
-#include <iostream>
+#include "Fixed.hpp"
+
+void testing(const Fixed& fix)
+{
+	std::cout << fix.getRawBits()<< std::endl;
+}
 
 int main ()
 {
-	double a = 1.0 / 3.0;
-	std::cout << a << "size : " << sizeof(a) << std::endl;
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
 
+	c = b;
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
 }
 
