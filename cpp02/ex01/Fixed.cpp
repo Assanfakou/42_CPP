@@ -12,26 +12,24 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float fl)
 {
-	std::cout << Cyan << "Int constructor called\n"; 
+	std::cout << Cyan << "Float constructor called\n"; 
 	this->value = roundf(fl * (1 << this->fractions));
 }
 float Fixed::toFloat(void) const{
-	std::cout << Yellow << "toFloat member function called\n"<< RESET;
 	return (float)this->value / (1 << this->fractions);
 }
 
 int Fixed::toInt(void) const{
-	std::cout << Yellow << "toInt member function called\n"<< RESET;
 	return this->value / (1 << this->fractions);
 }
-ostream& operator<<(ostream &out, const Fixed& c)
+std::ostream &operator<<(std::ostream& out, const Fixed& c)
 {
 	out << c.toFloat();
 	return out;
-} 
+}
 
 int Fixed::getRawBits() const{
-	std::cout << Yellow << "getRawBits member function called\n"<< RESET;
+	std::cout << Yellow << "getRawBits member function called\n" << RESET;
 	return value; 
 }
 
@@ -69,7 +67,7 @@ Fixed::Fixed(const Fixed& oldObj)
 Fixed& Fixed::operator=(const Fixed& next)
 {
 	std::cout << Green << "copy assignement operator called\n" << RESET;
-	this->value = next.getRawBits();
+	this->value = next.value;
 	return *this;
 }
 

@@ -26,8 +26,7 @@ class Fixed{
 		Fixed& operator=(const Fixed& next); // copy assignement operator
 		~Fixed();
 
-
-		friend ostream& operator<<(ostream &out, const Fixed& c)
+		friend std::ostream &operator<<(std::ostream &out, const Fixed& c);
 		int toInt(void) const;
 		float toFloat(void) const;
 		int getRawBits(void) const;
