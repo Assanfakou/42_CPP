@@ -1,6 +1,7 @@
-#include "Zombie.h"
+#include "Zombie.hpp"
 
-int Zombie::i = 0;
+int Zombie::i = 0; 
+
 int main ()
 {
     Zombie *z = zombieHorde(5, "assan");
