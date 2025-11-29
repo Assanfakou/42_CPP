@@ -42,6 +42,7 @@ bool checkPrintable(const std::string& line) {
 	}
 	return true;
 }
+
 bool isNum(std::string& line)
 {
 	size_t i = 0;
@@ -55,6 +56,7 @@ bool isNum(std::string& line)
 	}
 	return true;
 }	
+
 bool isAlphaNum(std::string& line)
 {
 	size_t i = 0;
@@ -67,7 +69,8 @@ bool isAlphaNum(std::string& line)
 			return false;
 	}
 	return true;
-}	
+}
+
 std::string getDarkestSecret(std::string toGet)
 {
 	std::string line;
@@ -86,6 +89,7 @@ std::string getDarkestSecret(std::string toGet)
 	}
 	return line;
 }
+
 std::string getNumber(std::string toGet)
 {
 	std::string line;
@@ -148,7 +152,7 @@ int main(void)
 				i = std::atoi(index.c_str());
 				if (i <= -1)
 					break;
-				if (!std::isdigit(index[0]))
+				if (!isNum(index))
 				{
 					std::cout << RED << "Naaaah" << RESET << '\n';
 					continue;

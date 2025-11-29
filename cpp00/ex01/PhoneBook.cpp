@@ -22,6 +22,7 @@ void PhoneBook::prinTable()
 		}
 	}
 }
+
 void PhoneBook::addContact(const Contact& c)
 {
     contacts[index] = c;
@@ -36,6 +37,6 @@ void PhoneBook::print_index(int index) {
 	contacts[index].print_data();
 }
 
-// int PhoneBook::get_size() {
-// 	return size;
-// }
+int PhoneBook::PhoneBook::get_size() {
+	return size;
+}
