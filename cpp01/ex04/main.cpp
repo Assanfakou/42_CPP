@@ -1,82 +1,47 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
-#include <string.h>
 
-std::string ReplaceString(std::string subject, std::string& search, std::string& replace) 
+int main(int ac, char **av) 
 {
-	size_t pos = 0;
-	while ((pos = subject.find(search, pos)) != std::string::npos)
-	{
-		subject.replace(pos, search.length(), replace);
-		pos += replace.length();
-	}
-	return subject;
-}
-
-void read_file(std::string& got, std::string av)
-{
-	bool flag = false;
-	std::ifstream readFile(av.c_str());
-	std::string line;
-
-	if (!readFile.is_open())
-	{
-		std::cout << "Error openning file" << std::endl;
-		exit(1);
-	}
-	while (std::getline(readFile, line))
-	{
-		if (flag)
-			got.append("\n");
-		flag = true;
-		got.append(line);
-	}
-	readFile.close();
-}
-
-int main(int ac, char **av)
-{
-	std::string bd;	
-	std::string res;
-	std::string finl;
-	std::string file;
-	std::string filename;
-	size_t n = 0;
-	size_t i = 0;
-	size_t j = 0;
-
 	if (ac != 4)
 	{
-		std::cout << "Use : ./run filename s1 s2\n";
+		std::cerr << "Error not enough arguments" << std::endl;
+		return (1);
+	}
+	std::string filename = av[1];
+	std::string s1 = av[2];
+	std::string s2 = av[3];
+	if (s1 == s2)
 		return 1;
-	}	
-	if (av[2][0] == '\0')
+	if (s1.empty() || s2.empty())
 	{
-		std::cout << "s1 cannot be empty\n";
-		return 1;
+		std::cerr << "String cannot be empty" << std::endl;
+		return (1);
 	}
-	file = av[1];
-	filename = file + ".replace";
-	read_file(res, file);
-	while ((n = res.find(av[2], n)) != std::string::npos)
+	std::ifstream input(filename.c_str());
+	if (!input.is_open())
 	{
-		j = n;
-		bd = res.substr(i, j - i);
-		finl.append(bd);
-		finl.append(av[3]);
-		i = j + strlen(av[2]);
-		n = i;
+		std::cerr << "failed to open the file" << std::endl;
+		return (1);
 	}
-	bd = res.substr(i, res.length());
-	finl.append(bd);
-	std::ofstream Myfile(filename.c_str());
-	if (!Myfile.is_open())
+	std::ofstream output((filename + ".replace").c_str());
+	if (!output.is_open()) 
 	{
-		std::cout << "Error openning file" << std::endl;
-		exit(1);
+		std::cerr << "failed to create the file" << std::endl;
+		return (1);
 	}
-	Myfile << finl;
-	Myfile.close();
-	return 0;
+	std::string line;
+	size_t pos;
+	while (getline(input, line))
+	{
+		while ((pos = line.find(s1)) != std::string::npos)
+		{
+			line.erase(pos, s1.length());
+			line.insert(pos, s2);
+		}
+		output << line << '\n';
+	}
+	input.close(); 
+	output.close();
 }
