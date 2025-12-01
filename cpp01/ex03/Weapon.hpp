@@ -8,4 +8,3 @@ class Weapon
 	const std::string& getType();
 	void setType(const std::string& type);
 };
-

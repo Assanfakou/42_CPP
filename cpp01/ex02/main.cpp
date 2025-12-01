@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 int main ()
 {
 	std::string var = "HI THIS IS BRAIN";

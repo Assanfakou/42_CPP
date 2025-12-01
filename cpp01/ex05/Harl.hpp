@@ -15,12 +15,12 @@
 class Harl
 {
 	private:
-	void debug();
-	void info();
-	void warning();
-	void error();
+		void debug();
+		void info();
+		void warning();
+		void error();
 	public:
-	void complain(std::string level);
+		void complain(std::string level);
 };
 
 #endif

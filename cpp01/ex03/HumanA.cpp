@@ -1,6 +1,5 @@
 #include "HumanA.hpp"
 
-
 HumanA::HumanA(const std::string& name, Weapon& w) : name(name), w(w) {}
 
 void HumanA::attack()

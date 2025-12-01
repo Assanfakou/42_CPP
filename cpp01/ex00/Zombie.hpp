@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 class Zombie{
     private:
