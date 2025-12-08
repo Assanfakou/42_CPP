@@ -1,22 +1,22 @@
 #include "Fixed.hpp"
 
-void testing(const Fixed& fix)
-{
-	std::cout << fix.getRawBits()<< std::endl;
-}
 
 int main ()
 {
 	Fixed a;
-	Fixed  b(10);
-	Fixed  c(10);
-	Fixed const d(b);
+	Fixed const b(Fixed(5.05f) * Fixed(2));
 
-	if (b != c)
-		std::cout << "equals" << std::endl;
-	else
-		std::cout << "doesn't" << std::endl;
-		
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+
+	std::cout << b << std::endl;	
+/*
+	std::cout << Fixed::max( a, b ) << std::endl;
+*/
 	return 0;
 }
+	
 

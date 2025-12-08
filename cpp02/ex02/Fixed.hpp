@@ -27,7 +27,6 @@ class Fixed{
 		Fixed& operator=(const Fixed& next); // copy assignement operator
 		Fixed(const Fixed& oldObj); // copy constructor
 
-		friend std::ostream &operator<<(std::ostream &out, const Fixed& c);
 
 		bool operator==(const Fixed& fi1);
 		bool operator!=(const Fixed& fi1);
@@ -36,10 +35,21 @@ class Fixed{
 		bool operator<=(const Fixed& fi1);
 		bool operator>=(const Fixed& fi1);
 		
+		Fixed& operator+(const Fixed& a);
+		Fixed& operator-(const Fixed& a);
+		Fixed& operator*(const Fixed& a);
+		Fixed& operator/(const Fixed& a);
+
+		Fixed& operator++();
+		Fixed& operator--();
+		Fixed operator++(int);
+		Fixed operator--(int);
+
 		int toInt(void) const;
 		float toFloat(void) const;
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 };
 
+std::ostream& operator<<(std::ostream &out, const Fixed& c);
 #endif

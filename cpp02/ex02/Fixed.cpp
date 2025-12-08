@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfakou <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/08 18:25:43 by hfakou            #+#    #+#             */
+/*   Updated: 2025/12/08 21:10:14 by hfakou           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 Fixed::Fixed() : value(0){	
@@ -67,10 +79,19 @@ Fixed::Fixed(const Fixed& oldObj)
 Fixed& Fixed::operator=(const Fixed& next)
 {
 	std::cout << Green << "copy assignement operator called\n" << RESET;
-	this->value = next.value;
+	if (this != &next)
+	{
+		this->value = next.value;
+		return *this;
+	}
 	return *this;
 }
 
+/* 
+**
+	Comparison Operations
+**
+*/
 bool Fixed::operator!=(const Fixed& fi1)
 {
 	if (this->value != fi1.value)
@@ -114,4 +135,66 @@ bool Fixed::operator<=(const Fixed& fi1)
 		return true;
 	else
 		return false;
+}
+
+/* 
+**
+	Arithmitic operations
+**
+*/
+
+Fixed& Fixed::operator+(const Fixed& a)
+{
+
+	this->value = this->value + a.value;
+	return *this;
+}
+
+Fixed& Fixed::operator-(const Fixed& a)
+{
+
+	this->value = this->value - a.value;
+	return *this;
+}
+
+Fixed& Fixed::operator*(const Fixed& a)
+{
+	this->value = (this->value * a.value) >> fractions;
+	return *this;
+}
+
+Fixed& Fixed::operator/(const Fixed& a)
+{
+	this->value = (this->value << fractions) / a.value;
+	return *this;
+}
+
+Fixed& Fixed::operator++()
+{
+	this->value = this->value + 1;
+	return *this;
+}
+
+Fixed& Fixed::operator--()
+{
+	this->value = this->value - 1;
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed copy;
+
+	copy = *this;
+	this->value = this->value + (1 << fractions);
+	return copy;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed copy;
+
+	copy = *this;
+	this->value = this->value - (1 << fractions);
+	return copy;
 }
