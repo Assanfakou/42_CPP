@@ -1,6 +1,6 @@
 #include <iostream>
 
-class Zombie{
+class Zombie {
     private:
     static int i;
     std::string name;

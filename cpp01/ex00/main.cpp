@@ -1,9 +1,11 @@
-#include "Zombie.h"
+#include "Zombie.hpp"
 
 int main(void)
 {
-    randomChump("assan");
-    Zombie *z = newZombie("fakou");
+    randomChump("stack");
+
+    Zombie *z = newZombie("z");
     z->announce();
+
     delete z;
 }
