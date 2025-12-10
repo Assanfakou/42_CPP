@@ -1,30 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hfakou <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 18:25:43 by hfakou            #+#    #+#             */
-/*   Updated: 2025/12/08 21:10:14 by hfakou           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Fixed.hpp"
 
 Fixed::Fixed() : value(0){	
-	std::cout << Cyan << "default constructor called\n"; 
 }
 
 Fixed::Fixed(const int value)
 {
-	std::cout << Cyan << "Int constructor called\n"; 
 	this->value = value << this->fractions;
 }
 
 Fixed::Fixed(const float fl)
 {
-	std::cout << Cyan << "Float constructor called\n"; 
 	this->value = roundf(fl * (1 << this->fractions));
 }
 float Fixed::toFloat(void) const{
@@ -41,7 +26,6 @@ std::ostream &operator<<(std::ostream& out, const Fixed& c)
 }
 
 int Fixed::getRawBits() const{
-	std::cout << Yellow << "getRawBits member function called\n" << RESET;
 	return value; 
 }
 
@@ -51,7 +35,6 @@ void Fixed::setRawBits(int const raw){
 
 Fixed::~Fixed()
 {
-	std::cout << Redr << "destructur called\n" << RESET;
 }
 
 /*
@@ -64,7 +47,6 @@ Fixed::~Fixed()
 
 Fixed::Fixed(const Fixed& oldObj)
 {
-	std::cout << Blue << "copy Constructor called\n" << RESET;
 	*this = oldObj;
 }
 
@@ -78,7 +60,6 @@ Fixed::Fixed(const Fixed& oldObj)
 
 Fixed& Fixed::operator=(const Fixed& next)
 {
-	std::cout << Green << "copy assignement operator called\n" << RESET;
 	if (this != &next)
 	{
 		this->value = next.value;
@@ -186,7 +167,7 @@ Fixed Fixed::operator++(int)
 	Fixed copy;
 
 	copy = *this;
-	this->value = this->value + (1 << fractions);
+	this->value = this->value + 1;
 	return copy;
 }
 
@@ -195,6 +176,36 @@ Fixed Fixed::operator--(int)
 	Fixed copy;
 
 	copy = *this;
-	this->value = this->value - (1 << fractions);
+	this->value = this->value - 1;
 	return copy;
+}
+
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+	if (a.value > b.value)
+		return b;
+	else
+		return a;
+}
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	if (a.value > b.value)
+		return b;
+	else
+		return a;
+}
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	if (a < b)
+		return b;
+	else
+		return a;
+}
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	if (a.value < b.value)
+		return b;
+	else
+		return a;
 }
