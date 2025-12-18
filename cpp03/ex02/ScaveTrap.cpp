@@ -12,7 +12,6 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(const std::string& _name) : ClapTrap(_name)
 {
     std::cout << Green << "ScavTrap Default Parametrized construtor called\n" << RESET;
-    name = name;
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
@@ -26,21 +25,13 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& next)
 {
 	std::cout << Green << "ScavTrap copy assignement operator called\n" << RESET;
 	if (this != &next)
-	{
         ClapTrap::operator=(next);
-		return *this;
-	}
 	return *this;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (this->hitPoints == 0)
-	{
-		std::cout << Green << "ScavTrap " << this->name << " is dead\n" << RESET;
-		return ;
-	}
-	if (this->energyPoints == 0)
+	if (this->hitPoints == 0) { std::cout << Green << "ScavTrap " << this->name << " is dead\n" << RESET; return ; } if (this->energyPoints == 0)
 	{
 		std::cout << Green << "ScavTrap " << this->name << " is Exhausted\n" << RESET;
 		return ;

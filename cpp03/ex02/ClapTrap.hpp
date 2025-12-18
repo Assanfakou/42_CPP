@@ -1,12 +1,12 @@
 #include <iostream>
 #include "colors.h"
 
-#ifndef ClapTrap_HPP
-# define ClapTrap_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 
 class ClapTrap{
-	private:
+	protected:
 		std::string name;
 		int hitPoints;
 		int energyPoints;
