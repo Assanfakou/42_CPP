@@ -1,29 +1,30 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-    FragTrap alpha("Alpha");
-    FragTrap beta("Beta");
-    FragTrap gamma("Gamma");
+    DiamondTrap alpha("Alpha");
+    // DiamondTrap beta("Beta");
+    // DiamondTrap gamma("Gamma");
+    alpha.attack("enemy");
 
-    alpha.highFiveGuys();
-    beta.highFiveGuys();
-    gamma.highFiveGuys();
+    // alpha.highFiveGuys();
+    // beta.highFiveGuys();
+    // gamma.highFiveGuys();
 
-    FragTrap delta;
-    FragTrap epsilon;
-    delta = epsilon = alpha;
-    delta.highFiveGuys();
-    epsilon.highFiveGuys();
+    // DiamondTrap delta;
+    // DiamondTrap epsilon;
+    // delta = epsilon = alpha;
+    // delta.highFiveGuys();
+    // epsilon.highFiveGuys();
 
-    FragTrap zeta(FragTrap("ZetaTemp"));
-    zeta.highFiveGuys();
+    // DiamondTrap zeta(FragTrap("ZetaTemp"));
+    // zeta.highFiveGuys();
 
-    alpha.attack("Enemy1");
-    beta.attack("Enemy2");
-    gamma.attack("Enemy3");
+    // alpha.attack("Enemy1");
+    // beta.attack("Enemy2");
+    // gamma.attack("Enemy3");
 
-    alpha.highFiveGuys();
-    beta.highFiveGuys();
-    gamma.highFiveGuys();
+    // alpha.highFiveGuys();
+    // beta.highFiveGuys();
+    // gamma.highFiveGuys();
 }
