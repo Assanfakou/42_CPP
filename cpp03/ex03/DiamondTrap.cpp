@@ -43,7 +43,7 @@ void DiamondTrap::attack(const std::string &target)
 
 void DiamondTrap::whoAmi()
 {
-	std::cout << Yellow << "I am " << this->name << " but you can call me " << ClapTrap::name << "\n" << RESET;
+	std::cout << Yellow << "I am " << DiamondTrap::name << " but you can call me " << ClapTrap::name << "\n" << RESET;
 }
 
 int DiamondTrap::get_hit()
