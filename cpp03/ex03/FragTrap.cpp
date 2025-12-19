@@ -1,6 +1,6 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap()
+FragTrap::FragTrap()
 {
     std::cout << Green << "FragTrap Default construtor called\n" << RESET;
     hitPoints = 100;
@@ -8,9 +8,10 @@ FragTrap::FragTrap() : ClapTrap()
     attackDamage = 30;
 }
 
-FragTrap::FragTrap(const std::string& _name) : ClapTrap(_name)
+FragTrap::FragTrap(const std::string& _name)
 {
     std::cout << Green << "FragTrap Default Parametrized construtor called\n" << RESET;
+    name = _name;
     hitPoints = 100;
     energyPoints = 100;
     attackDamage = 30;

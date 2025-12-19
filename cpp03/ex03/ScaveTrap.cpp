@@ -1,17 +1,17 @@
 #include "ScaveTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap()
 {
     std::cout << Green << "ScavTrap Default construtor called\n" << RESET;
-    name = "Default";
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const std::string& _name) : ClapTrap(_name)
+ScavTrap::ScavTrap(const std::string& _name)
 {
     std::cout << Green << "ScavTrap Default Parametrized construtor called\n" << RESET;
+    name = _name;
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
