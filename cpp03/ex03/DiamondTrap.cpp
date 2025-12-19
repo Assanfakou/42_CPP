@@ -28,7 +28,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& next)
 	if (this != &next)
 	{
 		this->name = next.name;
-		ClapTrap::name = next.ClapTrap::name;
+		ClapTrap::operator=(next);
 		hitPoints = next.hitPoints;
 		energyPoints = next.energyPoints;
 		attackDamage = next.attackDamage;

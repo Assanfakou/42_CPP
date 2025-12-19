@@ -3,7 +3,6 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << Green << "ScavTrap Default construtor called\n" << RESET;
-    name = "Default";
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
@@ -31,7 +30,12 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& next)
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (this->hitPoints == 0) { std::cout << Green << "ScavTrap " << this->name << " is dead\n" << RESET; return ; } if (this->energyPoints == 0)
+	if (this->hitPoints == 0)
+    {
+        std::cout << Green << "ScavTrap " << this->name << " is dead\n" << RESET;
+        return ;
+    }
+    if (this->energyPoints == 0)
 	{
 		std::cout << Green << "ScavTrap " << this->name << " is Exhausted\n" << RESET;
 		return ;
