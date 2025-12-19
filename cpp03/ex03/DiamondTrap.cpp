@@ -1,8 +1,9 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), name("default")
+DiamondTrap::DiamondTrap() :name("default")
 {
 	std::cout << Yellow << "DiamondTrap Default construtor called\n" << RESET;
+	ClapTrap::name = "Default_clap_name";
 	this->hitPoints = FragTrap::hitPoints;
 	this->energyPoints = 50;
 	this->attackDamage = FragTrap::attackDamage;
@@ -18,8 +19,8 @@ DiamondTrap::DiamondTrap(const std::string& _name) : ClapTrap(_name + "_clap_nam
 
 DiamondTrap::DiamondTrap(const DiamondTrap& oldObj)
 {
-	*this = oldObj;
 	std::cout << Yellow << "DiamondTrap copy Constructor called\n" << RESET;
+	*this = oldObj;
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& next)
