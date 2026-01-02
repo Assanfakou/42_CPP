@@ -2,36 +2,41 @@
 
 Animal::Animal()
 {
-	type = "Default";
-	std::cout << Blue << "default constructor\n" << RESET;
+	type = "Animal";
+	std::cout << Blue << type << " default constructor\n" << RESET;
 }
 
 Animal::Animal(const std::string& type)
 {
 	this->type = type;
-	std::cout << Blue << "default parametrized constructor\n" << RESET;
+	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
 Animal::Animal(const Animal& other)
 {
 	this->type = other.type;
-	std::cout << Green << "copy constructor\n" << RESET;
+	std::cout << Green << type << " copy constructor\n" << RESET;
 }
 
 Animal& Animal::operator=(const Animal& other)
 {
-	std::cout << Green << "copy assignement operator\n" << RESET;
+	std::cout << Green << type << "copy assignement operator\n" << RESET;
 	if (this != &other)
 		this->type = other.type;
 	return *this;
 }
 
-void Animal::makeSound()
+const std::string& Animal::getType() const
+{
+	return this->type;
+}
+
+void Animal::makeSound() const
 {
 	std::cout << Blue << "this is Animal\n" << RESET;
 }
 
 Animal::~Animal()
 {
-	std::cout << RED << "Destructor\n " << RESET;
+	std::cout << RED << "Animal Destructor\n" << RESET;
 }

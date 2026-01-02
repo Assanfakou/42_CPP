@@ -2,36 +2,35 @@
 
 Dog::Dog()
 {
-	type = "Default";
-	std::cout << Blue << "default constructor\n" << RESET;
+	type = "Dog";
+	std::cout << Green << type << " default constructor\n" << RESET;
 }
 
-Dog::Dog(const std::string& type)
+Dog::Dog(const std::string& type) : Animal(type)
 {
-	this->type = type;
-	std::cout << Blue << "default parametrized constructor\n" << RESET;
+	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
 Dog::Dog(const Dog& anim)
 {
 	this->type = anim.type;
-	std::cout << Green << "copy constructor\n" << RESET;
+	std::cout << Green << type << " copy constructor\n" << RESET;
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
-	std::cout << Green << "copy assignement operator\n" << RESET;
+	std::cout << Green << type << " copy assignement operator\n" << RESET;
 	if (this != &other)
-		this->type = other.type;
+		Animal::operator=(other);
 	return *this;
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
-	std::cout << Blue << "this is Dog wof wof\n" << RESET;
+	std::cout << Yellow << "this is Dog wof wof\n" << RESET;
 }
 
 Dog::~Dog()
 {
-	std::cout << RED << "Destructor\n " << RESET;
+	std::cout << Green << type << " Destructor\n" << RESET;
 }

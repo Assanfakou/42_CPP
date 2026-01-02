@@ -2,36 +2,35 @@
 
 Cat::Cat()
 {
-	type = "Default";
-	std::cout << Blue << "default constructor\n" << RESET;
+	type = "Cat";
+	std::cout << Blue << type << " default constructor\n" << RESET;
 }
 
-Cat::Cat(const std::string& type)
+Cat::Cat(const std::string& type) : Animal(type)
 {
-	this->type = type;
-	std::cout << Blue << "default parametrized constructor\n" << RESET;
+	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
 Cat::Cat(const Cat& obj)
 {
-	std::cout << Green << "copy constructor\n" << RESET;
+	std::cout << Green << type << " copy constructor\n" << RESET;
 	this->type = obj.type;
 }
 
 Cat& Cat::operator=(const Cat& other)
 {
-	std::cout << Green << "copy assignement operator\n" << RESET;
+	std::cout << Green << type << "copy assignement operator\n" << RESET;
 	if (this != &other)
-		this->type = other.type;
+		Animal::operator=(other);
 	return *this;
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
 	std::cout << Yellow << "this is cat Meow\n" << RESET;
 }
 
 Cat::~Cat()
 {
-	std::cout << RED << "Destructor\n " << RESET;
+	std::cout << RED << type << " Destructor\n " << RESET;
 }
