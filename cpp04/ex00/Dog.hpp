@@ -1,5 +1,8 @@
 #include "Animal.hpp"
 
+#ifndef DOG_HPP
+#define DOG_HPP 
+
 class Dog : public Animal
 {
 	public:
@@ -10,3 +13,4 @@ class Dog : public Animal
 		void makeSound() const;
 		~Dog();
 };
+#endif
