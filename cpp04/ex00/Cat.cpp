@@ -32,5 +32,5 @@ void Cat::makeSound() const
 
 Cat::~Cat()
 {
-	std::cout << RED << type << " Destructor\n " << RESET;
+	std::cout << RED << type << " Destructor\n" << RESET;
 }
