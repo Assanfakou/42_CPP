@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
 	type = "Cat";
 	std::cout << Blue << type << " default constructor\n" << RESET;
@@ -11,10 +11,9 @@ Cat::Cat(const std::string& type) : Animal(type)
 	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
-Cat::Cat(const Cat& obj)
+Cat::Cat(const Cat& obj) : Animal(obj)
 {
 	std::cout << Green << type << " copy constructor\n" << RESET;
-	this->type = obj.type;
 }
 
 Cat& Cat::operator=(const Cat& other)

@@ -1,6 +1,6 @@
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
 	type = "Dog";
 	std::cout << Green << type << " default constructor\n" << RESET;
@@ -11,9 +11,8 @@ Dog::Dog(const std::string& type) : Animal(type)
 	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
-Dog::Dog(const Dog& anim)
+Dog::Dog(const Dog& anim) : Animal(anim)
 {
-	this->type = anim.type;
 	std::cout << Green << type << " copy constructor\n" << RESET;
 }
 
