@@ -3,19 +3,20 @@
 Cat::Cat() : Animal()
 {
 	type = "Cat";
+	std::cout << Green << type << " default constructor\n" << RESET;
 	b = new Brain();
-	std::cout << Blue << type << " default constructor\n" << RESET;
 }
 
 Cat::Cat(const Cat& obj) : Animal(obj)
 {
 	std::cout << Green << type << " copy constructor\n" << RESET;
 	b = new Brain(*obj.b);
+	this->b = obj.b;
 }
 
 Cat& Cat::operator=(const Cat& other)
 {
-	std::cout << Green << type << "copy assignement operator\n" << RESET;
+	std::cout << Green << type << " copy assignement operator\n" << RESET;
 	if (this != &other)
 	{
 		Animal::operator=(other);
@@ -27,7 +28,7 @@ Cat& Cat::operator=(const Cat& other)
 
 void Cat::makeSound() const
 {
-	std::cout << Yellow << "this is cat Meow\n" << RESET;
+	std::cout << Green << "this is cat Meow\n" << RESET;
 }
 void Cat::printIdea(int i) const
 {
@@ -42,5 +43,5 @@ void Cat::printIdeas() const
 Cat::~Cat()
 {
 	delete b;
-	std::cout << RED << type << " Destructor\n" << RESET;
+	std::cout << Green << type << " Destructor\n" << RESET;
 }

@@ -9,18 +9,18 @@ Animal::Animal()
 Animal::Animal(const std::string& type)
 {
 	this->type = type;
-	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
+	std::cout << Blue << "Animal default parametrized constructor\n" << RESET;
 }
 
 Animal::Animal(const Animal& other)
 {
 	this->type = other.type;
-	std::cout << Green << type << " copy constructor\n" << RESET;
+	std::cout << Blue << "Animal copy constructor\n" << RESET;
 }
 
 Animal& Animal::operator=(const Animal& other)
 {
-	std::cout << Green << type << "copy assignement operator\n" << RESET;
+	std::cout << Blue << "Animal copy assignement operator\n" << RESET;
 	if (this != &other)
 		this->type = other.type;
 	return *this;
