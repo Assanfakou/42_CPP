@@ -1,37 +1,75 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
-
 
 int main()
 {
 	{
-		std::cout << "-------------------buggy assignement tests--------------------\n";
-		Cat va = Cat();
-		Cat ca;
-		Dog ad;
-		Dog copy(ad);
+		std::cout << "------------------- Deep copy (Cat copy constructor) -------------------\n";
 
-		ca = va;
-		ca.printIdea(1);
+		Brain b("original");
+		Cat cat1(b);
+		Cat cat2(cat1);
 
-		std::cout << "-------------------destructors begin fin--------------------\n";
+		std::cout << "Cat1 idea:\n";
+		cat1.printIdea(0);
+
+		std::cout << "Cat2 idea:\n";
+		cat2.printIdea(0);
+
+		std::cout << "Changing Cat1 brain\n";
+		Brain newBrain("changed");
+		cat1 = Cat(newBrain);
+
+		std::cout << "Cat1 idea after change:\n";
+		cat1.printIdea(0);
+
+		std::cout << "Cat2 idea (must stay original):\n";
+		cat2.printIdea(0);
+
+		std::cout << "------------------- End -------------------\n";
 	}
 
 	{
-		std::cout << "-------------------Normall output--------------------\n";
-		const Animal *a = new Dog();
-		const Animal *b = new Cat();
-		Cat *ca = new Cat();
-		ca->printIdeas();
+		std::cout << "------------------- Deep copy (Cat assignment) -------------------\n";
 
-		a->makeSound();
-		b->makeSound();
+		Brain b1("first");
+		Brain b2("second");
 
-		std::cout << "-------------------Destructors--------------------\n";
-		delete ca;
-		delete a;
-		delete b;
+		Cat cat1(b1);
+		Cat cat2(b2);
+
+		cat2 = cat1;
+
+		std::cout << "Cat1 idea:\n";
+		cat1.printIdea(0);
+
+		std::cout << "Cat2 idea after assignment:\n";
+		cat2.printIdea(0);
+
+		std::cout << "Changing Cat1 brain\n";
+		cat1 = Cat(Brain("changed again"));
+
+		std::cout << "Cat1 idea:\n";
+		cat1.printIdea(0);
+
+		std::cout << "Cat2 idea (must NOT change):\n";
+		cat2.printIdea(0);
+
+		std::cout << "------------------- End -------------------\n";
+	}
+	{
+		std::cout << "------------------- Polymorphism test -------------------\n";
+
+		const Animal *a1 = new Dog();
+		const Animal *a2 = new Cat();
+
+		a1->makeSound();
+		a2->makeSound();
+
+		delete a1;
+		delete a2;
+
+		std::cout << "------------------- End -------------------\n";
 	}
 }
+

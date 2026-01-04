@@ -1,5 +1,5 @@
 #include <iostream>
-#include "colors.h"
+# include "colors.h"
 
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP

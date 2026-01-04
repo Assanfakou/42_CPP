@@ -10,10 +10,10 @@ class Brain
         std::string ideas[100];
     public:
         Brain();
+        Brain(const std::string& idea);
         Brain(const Brain& obj);
         void getIdea(int i) const;
         void getIdeas() const;
-        void setIdeas(const std::string arr[]) const;
         Brain& operator=(const Brain& obj);
         ~Brain();
 };

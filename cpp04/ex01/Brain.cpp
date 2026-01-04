@@ -7,6 +7,12 @@ Brain::Brain()
     for (int i = 0; i < 100; i++)
         ideas[i] = "assan";
 }
+Brain::Brain(const std::string& idea)
+{
+    std::cout << Yellow << "Default constructor of Brain\n" << RESET;
+    for (int i = 0; i < 100; i++)
+        ideas[i] = idea;
+}
 
 Brain::Brain(const Brain& other)
 {

@@ -7,11 +7,17 @@ Cat::Cat() : Animal()
 	b = new Brain();
 }
 
+Cat::Cat(const Brain& brain) : Animal()
+{
+	type = "Cat";
+	std::cout << Green << type << " default constructor\n" << RESET;
+	b = new Brain(brain);
+}
+
 Cat::Cat(const Cat& obj) : Animal(obj)
 {
 	std::cout << Green << type << " copy constructor\n" << RESET;
 	b = new Brain(*obj.b);
-	this->b = obj.b;
 }
 
 Cat& Cat::operator=(const Cat& other)
@@ -30,6 +36,7 @@ void Cat::makeSound() const
 {
 	std::cout << Green << "this is cat Meow\n" << RESET;
 }
+
 void Cat::printIdea(int i) const
 {
 	b->getIdea(i);
