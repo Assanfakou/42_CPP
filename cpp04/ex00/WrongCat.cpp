@@ -11,7 +11,7 @@ WrongCat::WrongCat(const std::string& type) : WrongAnimal(type)
 	std::cout << Blue << type << " default parametrized constructor\n" << RESET;
 }
 
-WrongCat::WrongCat(const WrongCat& obj)
+WrongCat::WrongCat(const WrongCat& obj) : WrongAnimal(obj)
 {
 	std::cout << Green << type << " copy constructor\n" << RESET;
 	this->type = obj.type;
