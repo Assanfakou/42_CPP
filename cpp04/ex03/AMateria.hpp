@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 
-
 class ICharacter
 {
     std::string name;
@@ -15,7 +14,6 @@ class ICharacter
         }
 };
 
-
 class AMateria
 {
 protected:
@@ -23,14 +21,14 @@ protected:
 
 public:
     AMateria();
-    AMateria(std::string const& type);
-    AMateria(AMateria const& other);
-    AMateria& operator=(AMateria const& other);
+    AMateria(std::string const &type);
+    AMateria(AMateria const &other);
+    AMateria &operator=(AMateria const &other);
 
-    std::string const& getType() const;
+    std::string const &getType() const;
 
-    virtual AMateria* clone() const = 0;
-    virtual void use(ICharacter& target);
+    virtual AMateria *clone() const = 0;
+    virtual void use(ICharacter &target);
 
     virtual ~AMateria();
 };
