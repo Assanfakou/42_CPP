@@ -33,7 +33,7 @@ Character &Character::operator=(const Character &other)
         name = other.name;
         for (int i = 0; i < 4; i++)
         {
-            delete inventory;
+            delete inventory[i];
             if (other.inventory[i])
                 inventory[i] = other.inventory[i]->clone();
             else
