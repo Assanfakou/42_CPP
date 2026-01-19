@@ -31,11 +31,6 @@ const std::string& AAnimal::getType() const
 	return this->type;
 }
 
-void AAnimal::makeSound() const
-{
-	std::cout << Blue << "this is AAnimal\n" << RESET;
-}
-
 AAnimal::~AAnimal()
 {
 	std::cout << RED << "AAnimal Destructor\n" << RESET;

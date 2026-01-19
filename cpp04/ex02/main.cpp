@@ -8,9 +8,7 @@ int main()
 
 		const AAnimal *a1 = new Dog();
 		const AAnimal *a2 = new Cat();
-		// const AAnimal *aw[] = {new Cat(), new Dog()};// can't have an enstense of it self
-
-		// aw[0]->makeSound();
+		// const AAnimal *aw = new AAnimal();
 		a1->makeSound();
 		a2->makeSound();
 
