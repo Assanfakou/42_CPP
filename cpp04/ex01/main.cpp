@@ -28,6 +28,32 @@ int main()
 
 		std::cout << "------------------- End -------------------\n";
 	}
+	{
+		std::cout << "------------------- cration of the array -------------------\n";
+		Animal *animal[10];
+
+		for (int i = 0; i < 5; i++)
+		{
+			animal[i] = new Cat();
+		}
+
+		for (int i = 5; i < 10; i++)
+		{
+			animal[i] = new Dog();
+		}
+
+		std::cout << "------------------- making the sound -------------------\n";
+		for (int i = 0; i < 10; i++)
+		{
+			animal[i]->makeSound();
+		}
+
+		std::cout << "------------------- End -------------------\n";
+		for (int i = 0; i < 10; i++)
+		{
+			delete animal[i];
+		}
+	}
 
 	{
 		std::cout << "------------------- Deep copy (Cat assignment) -------------------\n";
