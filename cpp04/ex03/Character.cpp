@@ -75,6 +75,7 @@ void Character::unequip(int idx)
         return ;
     inventory[idx] = NULL;
 }
+
 void Character::use(int idx, ICharacter &target)
 {
     if (idx < 0 || idx >= 4)
