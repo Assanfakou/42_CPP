@@ -23,7 +23,4 @@ void AMateria::use(ICharacter& target)
     (void)target;
     std::cout << "usee some materia \n";
 }
-AMateria::~AMateria()
-{
-    std::cout << "this detructor\n";
-}
+AMateria::~AMateria() {}

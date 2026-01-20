@@ -15,7 +15,6 @@ Character::Character(const std::string& name) : name(name)
 }
 
 Character::Character(const Character& other) : name(other.name){
-    std::cout << "copy constructor is called\n";
 
     for (int i = 0; i < 4; i++){
         if (other.inventory[i])
@@ -27,7 +26,6 @@ Character::Character(const Character& other) : name(other.name){
 
 Character &Character::operator=(const Character &other)
 {
-
     if (this != &other)
     {
         name = other.name;

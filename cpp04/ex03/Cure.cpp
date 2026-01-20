@@ -22,5 +22,4 @@ void Cure::use(ICharacter& target)
 }
 
 Cure::~Cure() {
-    std::cout << "Cure destructor\n";
 }

@@ -25,7 +25,7 @@ int main ()
         delete src;
     }
     {
-        std::cout << "\n----- Memory TEST -----\n" << std::endl;
+        std::cout << "\n----- testing Memory -----\n" << std::endl;
 
         IMateriaSource *s = new MateriaSource();
         s->learnMateria(new Ice());
@@ -35,7 +35,7 @@ int main ()
         s->learnMateria(new Ice());
         s->learnMateria(new Cure());
 
-        std::cout << "This test is only to check that the memory is freed and everything is okay." << std::endl;
+        std::cout << "---------------End------------------------" << std::endl;
         delete s;
     }
     return 0;

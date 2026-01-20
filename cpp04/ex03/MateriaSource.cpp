@@ -10,8 +10,6 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
-    std::cout << "copy constructor is called\n";
-
     for (int i = 0; i < 4; i++){
         if (other.materias[i])
             materias[i] = other.materias[i]->clone();
@@ -59,6 +57,7 @@ void MateriaSource::learnMateria(AMateria *m)
     }
     delete m;
 }
+
 AMateria *MateriaSource::createMateria(std::string const &type)
 {
     for (int i = 0; i < 4; i++)

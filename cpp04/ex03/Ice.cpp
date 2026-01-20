@@ -20,5 +20,4 @@ void Ice::use(ICharacter& target)
     std::cout << " shoot this ice bolt at " << target.getName() << "\n";
 }
 Ice::~Ice() {
-    std::cout << "destructor of Ice\n";
 }
