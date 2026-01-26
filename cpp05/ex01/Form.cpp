@@ -3,7 +3,7 @@
 Form::Form(const std::string& name, int gradeSign, int gradeExcute) : 
 	name(name), 
 	gradeSign(gradeSign), 
-	isSigne(false),
+	isSigned(false),
 	gradeExcute(gradeExcute)
 {
 	if (gradeSign < 1 || gradeExcute < 1)
@@ -34,15 +34,15 @@ const std::string& Form::getName() const
 
 bool Form::isSigne() const 
 {
-	return isSigne;
+	return isSigned;
 }
 
-int Form::gradeSign() const
+int Form::gradeToSign() const
 {
 	return gradeSign;
 }
 
-int Form::gradeExcute() const
+int Form::gradeToExcute() const
 {
 	return gradeExcute;
 }
@@ -61,14 +61,14 @@ std::ostream& operator<<(std::ostream& os, const Form& form)
 {
 	os << "Form " << form.getName()
 		<< ", Signed: " << form.isSigne()
-		<< ", grade to signe: " << form.gradeSign()
-		<< ", grade to Execute: " << form.gradeExcute();
+		<< ", grade to signe: " << form.gradeToSign()
+		<< ", grade to Execute: " << form.gradeToExcute();
 		return os;
 }
 void Form::beSigned(const Bureaucrat& b)
 {
 	if (b.getGrade() > gradeSign)
 		throw GradeTooLowException();
-	isSigne = true;
+	isSigned = true;
 }
 Form::~Form() {}

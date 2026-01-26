@@ -2,6 +2,8 @@
 #define FORM
 
 #include "Bureaucrat.h"
+ 
+class Bureaucrat;
 
 class Form
 {
@@ -18,8 +20,10 @@ class Form
 
 		const std::string& getName() const;
 		bool isSigne() const;
-		int gradeSign() const;
-		int gradeExcute() const;
+		int gradeToSign() const;
+		int gradeToExcute() const;
+
+		void beSigned(const Bureaucrat& b);
 		
 		class GradeTooHighException : public std::exception
 		{

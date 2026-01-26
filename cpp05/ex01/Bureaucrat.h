@@ -2,6 +2,7 @@
 #define BUREAUCRAT
 
 #include <iostream>
+#include "Form.h"
 
 class Bureaucrat
 {
@@ -16,6 +17,7 @@ class Bureaucrat
 
 	int getGrade() const;
 	const std::string& getName() const;
+	void signForm(Form &f);
 
 	void incrementGrade();	
 	void decrementGrade();
