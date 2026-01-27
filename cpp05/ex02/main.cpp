@@ -8,27 +8,47 @@ int main()
 {
     try
     {
-        Bureaucrat boss("Boss", 1);
+        std::cout << Green << "\n========== BUREAUCRATS ==========\n\n" << RESET;
+        Bureaucrat boss("The Big Boss", 1);
+        Bureaucrat intern("Sad Intern", 150);
+        Bureaucrat middleMan("Middle Manager", 40);
 
-        std::cout << Green << "Shrubbery\n" << RESET;
-        ShrubberyCreationForm shrub("home");
+        std::cout << boss << "\n";
+        std::cout << intern << "\n";
+        std::cout << middleMan << "\n\n\n";
+
+        std::cout << Green << "\n========== FORMS ==========\n\n" << RESET;
+        ShrubberyCreationForm shrub("Garden");
+        RobotomyRequestForm robot("Bender");
+        PresidentialPardonForm pardon("Enemy");
+
+        std::cout << shrub << "\n";
+        std::cout << robot << "\n";
+        std::cout << pardon << "\n\n\n";
+
+        std::cout << Green << "\n========== TESTING SHRUBBERY ==========\n\n" << RESET;
+        intern.executeForm(shrub);
         boss.signForm(shrub);
-        boss.executeForm(shrub);
+        intern.executeForm(shrub);
+        middleMan.executeForm(shrub);
+        std::cout << "\n\n";
 
-        std::cout << Green << "Roboto\n" << RESET;
-        RobotomyRequestForm robot("Marvin");
-        boss.signForm(robot);
+        std::cout << Green << "\n========== TESTING ROBOTOMY ==========\n\n" << RESET;
+        middleMan.signForm(robot);
+        middleMan.executeForm(robot); 
         boss.executeForm(robot);
+        std::cout << "\n\n";
 
-        std::cout << Green << "Presidential\n" << RESET;
-        PresidentialPardonForm pardon("Arthur");
+
+        std::cout << Green << "\n========== TESTING PARDON  ==========\n\n" << RESET;
+        middleMan.signForm(pardon);
         boss.signForm(pardon);
+        middleMan.executeForm(pardon);
         boss.executeForm(pardon);
+        std::cout << "\n\n";
     }
-    catch (std::exception& e)
+    catch(std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << e.what() << "\n";
     }
-
-    return 0;
 }
