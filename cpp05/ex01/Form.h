@@ -1,8 +1,9 @@
 #ifndef FORM
 #define FORM
 
-#include "Bureaucrat.h"
- 
+#include <iostream>
+#include <exception> 
+
 class Bureaucrat;
 
 class Form

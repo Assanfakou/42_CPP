@@ -1,4 +1,5 @@
 #include "Form.h"
+#include "Bureaucrat.h"
 
 Form::Form(const std::string& name, int gradeSign, int gradeExcute) : 
 	name(name), 
@@ -60,9 +61,9 @@ const char *Form::GradeTooLowException::what() const throw()
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
 	os << "Form " << form.getName()
-		<< ", Signed: " << form.isSigne()
-		<< ", grade to signe: " << form.gradeToSign()
-		<< ", grade to Execute: " << form.gradeToExcute();
+		<< " , Signed: " << form.isSigne()
+		<< " , grade to signe: " << form.gradeToSign()
+		<< " , grade to Execute: " << form.gradeToExcute();
 		return os;
 }
 void Form::beSigned(const Bureaucrat& b)

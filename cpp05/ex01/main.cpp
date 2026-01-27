@@ -1,10 +1,11 @@
 #include "Bureaucrat.h"
 #include "Form.h"
 #include <iostream>
+#include "colors.h"
 
 int main()
 {
-    std::cout << "----- VALID SIGNING -----" << std::endl;
+    std::cout << Green << "----- VALID SIGNING -----" << std::endl << RESET;
     try
     {
         Bureaucrat boss("Boss", 10);
@@ -21,7 +22,7 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n----- GRADE TOO LOW TO SIGN -----" << std::endl;
+    std::cout << Green << "\n----- GRADE TOO LOW TO SIGN -----" << std::endl << RESET;
     try
     {
         Bureaucrat intern("Intern", 100);
@@ -35,21 +36,7 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n----- SIGNING ALREADY SIGNED FORM -----" << std::endl;
-    try
-    {
-        Bureaucrat manager("Manager", 1);
-        Form report("Report", 10, 10);
-
-        manager.signForm(report);
-        manager.signForm(report); // second attempt
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-
-    std::cout << "\n----- INVALID FORM GRADES -----" << std::endl;
+    std::cout << Green << "\n----- INVALID FORM GRADES -----" << std::endl << RESET;
     try
     {
         Form badForm("BadForm", 0, 200);

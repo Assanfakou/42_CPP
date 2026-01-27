@@ -2,7 +2,8 @@
 #define BUREAUCRAT
 
 #include <iostream>
-#include "Form.h"
+
+class Form;
 
 class Bureaucrat
 {

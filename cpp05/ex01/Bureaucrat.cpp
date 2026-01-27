@@ -1,5 +1,5 @@
-#include "Bureaucrat.h"
 #include "Form.h"
+#include "Bureaucrat.h"
 
 Bureaucrat::Bureaucrat(const std::string &name, int Grade) : name(name)
 {
@@ -57,11 +57,11 @@ void Bureaucrat::signForm(Form &f)
 	try
 	{
 		f.beSigned(*this);
-		std::cout << "Bureaucrat : " << name << "signed this : " << f.getName() << '\n';
+		std::cout << "Bureaucrat : " << name << " signed this : " << f.getName() << '\n';
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Bureaucrat : " << name << "Couldn't signe : " << f.getName() << " Because of " << e.what() << '\n';
+		std::cout << "Bureaucrat : " << name << " Couldn't signe : " << f.getName() << " Because of " << e.what() << '\n';
 	}
 	
 }
