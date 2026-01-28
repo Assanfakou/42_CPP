@@ -84,8 +84,8 @@ void ScalarConverter::convert(const std::string& inp)
 
                 float tmp = static_cast<float>(val);
                 if (tmp == static_cast<int>(val))
-                        std::cout << ".0f";
-                std::cout << "\n";
+                        std::cout << ".0";
+                std::cout << "f\n";
         }
 
         std::cout << "Double : ";
