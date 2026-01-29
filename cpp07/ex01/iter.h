@@ -5,8 +5,13 @@ template <typename T>
 
 void fa(T a)
 {
-    a = 97;
-    // std::cout << static_cast<char>(std::toupper(a));
+    a =  static_cast<char>(std::toupper(a));
+}
+
+template <typename T>
+void read(T a)
+{
+    std::cout << static_cast<char>(std::toupper(a));
 }
 
 template <typename T, typename F>
