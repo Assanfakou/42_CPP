@@ -6,7 +6,7 @@ int main()
     Data data;
     data.key = 8008;
     data.letter = "Dear friend";
-
+   char c = (int)'a';
     Data* originalPtr = &data;
 
     uintptr_t raw = Serializer::serialize(originalPtr);
