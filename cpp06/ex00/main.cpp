@@ -1,6 +1,4 @@
-#include <iostream>
 #include "ScalarConverter.h"
-#include <limits>
 
 int main(int ac, char **av)
 {

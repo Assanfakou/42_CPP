@@ -5,11 +5,13 @@ SRC = main.cpp ScalarConverter.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
+HDR = ScalarConverter.h
+
 NAME = run
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HDR)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.cpp

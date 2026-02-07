@@ -2,6 +2,10 @@
 #define SCALAR_CONVERTER
 
 #include <iostream>
+#include <cstdlib>
+#include <limits.h>
+#include <cmath>
+#include <iomanip> 
 
 class ScalarConverter
 {
