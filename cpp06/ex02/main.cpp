@@ -1,11 +1,7 @@
-#include <iostream>
 #include "Base.h"
 #include "A.h"
 #include "B.h"
 #include "C.h"
-#include <cstdlib>
-#include <ctime>
-
 
 Base* generate(void)
 {
@@ -60,6 +56,8 @@ void identify(Base& p)
 int main ()
 {
     Base* b = generate();
+
+    std::cout << "pointer here \n";
     identify(b);
     std::cout << "reference here \n";
     identify(*b);

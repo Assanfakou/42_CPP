@@ -2,14 +2,14 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp  Base.cpp
-
+HDR = A.h B.h C.h Base.h
 OBJ = $(SRC:%.cpp=%.o)
 
 NAME = run
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HDR)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.cpp

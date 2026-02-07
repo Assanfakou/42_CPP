@@ -3,13 +3,14 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Serializer.cpp 
 
+HDR = Data.h Serializer.h
 OBJ = $(SRC:%.cpp=%.o)
 
 NAME = run
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HDR)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.cpp
