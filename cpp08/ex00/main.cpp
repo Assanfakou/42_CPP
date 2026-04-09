@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "MyExeption.hpp"
 
 template <typename T>
 
@@ -9,7 +10,7 @@ typename T::iterator easyfind(T& container, int value)
     typename T::iterator it = std::find(container.begin(), container.end(), value);
 
     if (it == container.end())
-        throw std::exception();
+        throw MyExeption();
     return it;
 }
 
@@ -18,10 +19,10 @@ int main ()
     std::vector<int> v = {1, 3, 4, 4, 5, 5, 6, 4};
     try
     {
-        auto it = easyfind(v, 4);
-        std::cout << *it;
+        std::vector<int>::iterator it = easyfind(v, 3); std::cout << *it;
     }
-    catch (const std::exception &e)
+
+    catch (const MyExeption &e)
     {
         std::cerr << e.what() << '\n';
     }
