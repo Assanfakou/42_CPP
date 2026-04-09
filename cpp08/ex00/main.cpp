@@ -4,18 +4,26 @@
 
 template <typename T>
 
-typename T::iterator easyfind(T& continer, int value)
+typename T::iterator easyfind(T& container, int value)
 {
-    auto it = std::find(continer.begin(), continer.end(), value);
+    typename T::iterator it = std::find(container.begin(), container.end(), value);
 
+    if (it == container.end())
+        throw std::exception();
     return it;
 }
 
 int main ()
 {
     std::vector<int> v = {1, 3, 4, 4, 5, 5, 6, 4};
+    try
+    {
+        auto it = easyfind(v, 4);
+        std::cout << *it;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-    auto it = easyfind(v, 10);
-
-    std::cout << *it++;
 }
