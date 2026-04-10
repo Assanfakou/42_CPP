@@ -21,7 +21,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught in basic test" << std::endl;
+        std::cout << "Exception caught in basic test" << e.what() << std::endl;
     }
 
     std::cout << std::endl;
@@ -56,7 +56,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught (not enough numbers)" << std::endl;
+        std::cout << "Exception caught (not enough numbers)" << e.what() << std::endl;
     }
 
     std::cout << std::endl;
