@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = 
 
-SRC = main.cpp MyExeption.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
