@@ -66,7 +66,6 @@ int Span::shortestSpan()
                 throw ExceptionShort();
 
         std::vector<int> tmp = box;
-        int diff;
 
         std::sort(tmp.begin(), tmp.end());
 
