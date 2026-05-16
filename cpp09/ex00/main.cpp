@@ -2,13 +2,14 @@
 
 int main (int ac, char *av[])
 {
-	if (ac != 2)
+	if (ac < 2)
 		return 1;
 	try
 	{
 		BitcoinExchange btc;
 
 		btc.loadDatabase(av[1]);
+		btc.processInput(av[2]);
 	}
 	catch (std::exception &e)
 	{
