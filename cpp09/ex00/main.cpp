@@ -9,8 +9,8 @@ int main (int ac, char *av[])
 	{
 		BitcoinExchange btc;
 
-		btc.loadDatabase(av[1]);
-		btc.processInput(av[2]);
+		btc.loadDatabase("db.csv");
+		btc.processInput(av[1]);
 	}
 	catch (std::exception &e)
 	{
