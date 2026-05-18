@@ -17,8 +17,8 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-        if (this != &other)
-        {
+	if (this != &other)
+	{
 		data = other.data;
 	}
 	return (*this);
@@ -48,7 +48,6 @@ bool BitcoinExchange::check_date(const std::string& date)
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
-	
 	if (year < 0)
 		return false;
 	if (month < 1 || month > 12)
@@ -75,26 +74,26 @@ bool BitcoinExchange::check_value(const std::string& value, float &result)
 			dot++;
 			if (dot > 1)
 			{
-				std::cerr << "value has more than dots" << '\n';
+				std::cerr << "Error : value has more than dots" << '\n';
 				return false;
 			}
 			continue;
 		}
 		if (!std::isdigit(value[i]))
 		{
-			std::cerr << "Not a digit \n";
+			std::cerr << "Error : Not a digit \n";
 			return false;
 		}
 	}
 	result = std::atof(value.c_str());
 	if (result < 0)
 	{
-		std::cerr << "result is Negative \n";
+		std::cerr << "Error : not A postive number \n";
 		return false;
 	}
 	if (result > 1000)
 	{
-		std::cerr << "result is too large \n";
+		std::cerr << "Error : Number is too large \n";
 		return false;
 	}
 	return true;
@@ -108,14 +107,11 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 	std::string value;
 	size_t comma = 0;
 
-	int lin = 0;
 	if (!datafile.is_open())
 		throw FileIssue();
 	std::getline(datafile, line);
 	while (std::getline(datafile, line))
 	{
-		lin++;
-		std::cout << lin << std::endl;
 		comma = line.find(",");
 		if (comma == std::string::npos)
 			continue;
@@ -123,7 +119,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 		value = line.substr(comma + 1);
 		data[date] = atof(value.c_str());
 	}
-	print_map();
+	// print_map();
 }
 
 void BitcoinExchange::processInput(const std::string &filename)
@@ -140,20 +136,41 @@ void BitcoinExchange::processInput(const std::string &filename)
 	while (std::getline(inputFile, line))
 	{
 		float num;
-		delemeter = line.find("|");
+		delemeter = line.find(' ');
 		if (delemeter == std::string::npos)
+		{
+			std::cout << "there is not delemeter found\n";
 			continue;
+		}
 		date = line.substr(0, delemeter);
-		amount = line.substr(delemeter + 1);
+		amount = line.substr(delemeter + 3);
 		if (!check_date(date))
 		{
-			std::cerr << "date formula issue\n";
+			std::cerr << "Error : bad Formula => " << date << "\n";
 			continue;
 		}
 		if (!check_value(amount, num))
 			continue;
-		std::cout << date << " " << amount << " \n";
+		std::cout << date << " => " << amount << " = " << getRate(date) * num << std::endl;
+		// std::cout << getRate(date) << std::endl;
+		// std::cout << date << " " << amount << " \n";
 	}
+}
+float BitcoinExchange::getRate(const std::string& date)
+{
+	std::map<std::string, float>::iterator it;
+
+	// for (it = data.begin(); it != data.end(); ++it)
+	// {
+	// 	if (date == data[date])
+	// 		std::cout << "value multiplied by result = " << std::data[date]
+	// }
+	it = data.lower_bound(date);
+	return (it->second);
+}
+const char* BitcoinExchange::FileIssue::what() const throw()
+{
+	return "FIle Issue";
 }
 BitcoinExchange::~BitcoinExchange()
 {
