@@ -174,12 +174,20 @@ float BitcoinExchange::getRate(const std::string& date)
 {
 	std::map<std::string, float>::iterator it;
 
-	// for (it = data.begin(); it != data.end(); ++it)
-	// {
-	// 	if (date == data[date])
-	// 		std::cout << "value multiplied by result = " << std::data[date]
-	// }
 	it = data.lower_bound(date);
+	if (it->first == date && it != data.end())
+		return it->second;
+	else
+	{
+		if (it == data.begin())
+		{
+			std::cerr << "Error : can't step back " << date << "\n";
+			return 0;
+		}
+		--it;
+	}
+	return (it->second);
+
 	return (it->second);
 }
 const char* BitcoinExchange::FileIssue::what() const throw()
