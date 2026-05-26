@@ -18,21 +18,49 @@ RPN &RPN::operator=(const RPN &other)
         return (*this);
 }
 
+bool RPN::isOperator(char c)
+{
+        if (stack.size() < 2)
+                return false;
+        int b = stack.top();
+        stack.pop();
+        int a = stack.top();
+        stack.pop();
+        
+        if (c == '+')
+                stack.push(a + b);
+        else if (c == '-')
+                stack.push(a - b);
+        else if (c == '*')
+                stack.push(a * b);
+        else if (c == '/')
+                stack.push(a / b);
+        return true;
+}
+
 void RPN::load_data(const std::string &input)
 {
         std::string tmp = input;
-        std::string::iterator it = tmp.begin();
+        std::string::iterator it;
         
-        for (it; it != tmp.end(); ++it)
+        for (it = tmp.begin(); it != tmp.end(); it++)
         {
-                if (std::isdigit(tmp.at(it)))
+                if (std::isdigit(*it))
                 {
-                        stack.push(std::atoi(tmp.at(it)));
+                        stack.push(*it - '0');
                         continue;
                 }
-                else if (tmp.at(it) == '-' || '+' || '/' || '*')
-                        // handle operator
-                else if (tmp.at(it) == ' ')
+                else if (*it == '-' || *it == '+' || *it == '/' || *it == '*')
+                {
+                        if (isOperator(*it))
+                                continue;
+                        else
+                        {
+                                std::cerr << "Error\n";
+                                return;
+                        }
+                }
+                else if (*it == ' ')
                         continue;
                 else 
                 {
@@ -40,6 +68,13 @@ void RPN::load_data(const std::string &input)
                         return ;
                 }
         }
+        if (stack.size() != 1)
+        {
+                std::cerr << "Error\n";
+                return ;
+        }
+        else
+                std::cout << stack.top() << "\n";
 }
 RPN::~RPN()
 {
