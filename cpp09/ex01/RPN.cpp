@@ -17,8 +17,14 @@ RPN &RPN::operator=(const RPN &other)
         }
         return (*this);
 }
+bool RPN::isOperator(const std::string &token)
+{
+        if (token[0] == '+' || token[0] == '-' || token[0] == '*' || token[0] || token[0] == '/')
+                return true;
+        return false;
+}
 
-bool RPN::isOperator(char c)
+bool RPN::doOperator(const std::string &token)
 {
         if (stack.size() < 2)
                 return false;
@@ -27,42 +33,40 @@ bool RPN::isOperator(char c)
         int a = stack.top();
         stack.pop();
         
-        if (c == '+')
+        if (token[0] == '+')
                 stack.push(a + b);
-        else if (c == '-')
+        else if (token[0] == '-')
                 stack.push(a - b);
-        else if (c == '*')
+        else if (token[0] == '*')
                 stack.push(a * b);
-        else if (c == '/')
+        else if (token[0] == '/')
                 stack.push(a / b);
         return true;
+}
+bool RPN::isNumber(const std::string &token) 
+{
+        if (std::isdigit(token[0]))
+                return true;
+        else
+                return false;
 }
 
 void RPN::load_data(const std::string &input)
 {
-        std::string tmp = input;
-        std::string::iterator it;
-        
-        for (it = tmp.begin(); it != tmp.end(); it++)
+        std::string tmp;
+        std::istringstream splited(input);
+        while (splited >> tmp) 
         {
-                if (std::isdigit(*it))
+                if (tmp.size() > 1)
                 {
-                        stack.push(*it - '0');
-                        continue;
+                        std::cerr << "Error\n";
+                        return ;
                 }
-                else if (*it == '-' || *it == '+' || *it == '/' || *it == '*')
-                {
-                        if (isOperator(*it))
-                                continue;
-                        else
-                        {
-                                std::cerr << "Error\n";
-                                return;
-                        }
-                }
-                else if (*it == ' ')
-                        continue;
-                else 
+                if (isNumber(tmp))
+                        stack.push(std::atoi(tmp.c_str()));
+                else if (isOperator(tmp))
+                        doOperator(tmp);
+                else
                 {
                         std::cerr << "Error\n";
                         return ;

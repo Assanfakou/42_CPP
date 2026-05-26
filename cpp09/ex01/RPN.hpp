@@ -3,13 +3,15 @@
 #include <iostream>
 #include <algorithm>
 #include <stack>
+#include <sstream>
 
 class RPN
 {
       private:
         std::stack<int> stack;
-        bool isNumber(char c);
-        bool isOperator(char c);
+        bool isNumber(const std::string &token);
+        bool isOperator(const std::string &token);
+        bool doOperator(const std::string &token);
       public:
         RPN(void);
         void load_data(const std::string &input);
