@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp 
 
 OBJ = $(SRC:%.cpp=%.o)
-HRS = Array.h
+HRS = Array.hpp
 
 NAME = run
 

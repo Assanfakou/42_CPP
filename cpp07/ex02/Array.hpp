@@ -1,5 +1,4 @@
-#ifndef ARRAY
-#define ARRAY
+#pragma once
 
 #include <iostream>
 
@@ -56,14 +55,10 @@ Array<T>& Array<T>::operator=(const Array<T> &other)
         {
                 delete []array;
                 size = other.size;
-                array = NULL;
-                if (size > 0)
+                array = new T[size];
+                for (unsigned int i = 0; i < size; i++)
                 {
-                        array = new T[size];
-                        for (unsigned int i = 0; i < size; i++)
-                        {
-                                array[i] = other.array[i];
-                        }
+                        array[i] = other.array[i];
                 }
         }
         return (*this);
@@ -98,4 +93,3 @@ Array<T>::~Array()
 {
         delete []array;
 }
-#endif

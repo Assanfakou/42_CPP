@@ -1,18 +1,48 @@
-#include <iostream>
-#include "iter.h"
+#include "iter.hpp"
+#include <string>
 
-int main ()
+void printInt(const int &x)
 {
-    int arr[] = {1, 2, 3, 4, 5, 6};
+    std::cout << x << " ";
+}
 
-    iter(arr, sizeof(arr) / 4, fa);
+void increment(int &x)
+{
+    x++;
+}
 
-    for (int i = 0; i < static_cast<int>(sizeof(arr) / 4); i++)
-        std::cout << arr[i] << " ";
-    std::cout << "\n";
+void printString(const std::string &str)
+{
+    std::cout << str << " ";
+}
 
-     char stri[] = "hello friend this is the end of your life";
+int main()
+{
+    std::cout << "===== Test 1 : Modify int array =====" << std::endl;
 
-    iter(stri, strlen(stri), fa);
-    std::cout << stri;
+    int numbers[] = {1, 2, 3, 4, 5};
+
+    iter(numbers, 5, increment);
+
+    iter(numbers, 5, printInt);
+
+    std::cout << std::endl << std::endl;
+
+    std::cout << "===== Test 2 : Const int array =====" << std::endl;
+
+    const int values[] = {10, 20, 30, 40};
+
+    iter(values, 4, printInt);
+
+    std::cout << std::endl << std::endl;
+
+    std::cout << "===== Test 3 : String array =====" << std::endl;
+
+    std::string words[] = {"Hello", "World", "!"};
+
+    iter(words, 3, printString);
+
+    std::cout << std::endl;
+
+    return 0;
 }
