@@ -27,7 +27,7 @@ int main()
     std::cout << "============================" << std::endl;
 
     std::list<int> lst;
-
+    
     lst.push_back(10);
     lst.push_back(20);
     lst.push_back(30);

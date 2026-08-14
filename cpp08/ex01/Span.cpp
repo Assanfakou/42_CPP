@@ -1,21 +1,11 @@
 #include "Span.hpp"
 
-Span::Span(void)
-{
-        box.reserve(1);
-}
-Span::Span(unsigned int n)
-{
-        if (n < 2)
-                throw ExceptionShort();
-        else
-                maxSize = n;
-}
-Span::Span(const Span &other)
-{
-        this->box = other.box;
-        this->maxSize = other.maxSize;
-}
+Span::Span(void) : maxSize(0) {}
+
+Span::Span(unsigned int n) : maxSize(n) {}
+
+Span::Span(const Span &other) : box(other.box), maxSize(other.maxSize) {}
+
 Span &Span::operator=(const Span &other)
 {
         if (this != &other)
@@ -43,24 +33,17 @@ const char *Span::ExceptionShort::what() const throw()
         return "The Size Should Be More Than Two";
 }
 
-void Span::print()
-{
-        for (std::vector<int>::iterator it = box.begin(); it != box.end() ; it++)
-                std::cout << *it << ", ";
-        std::cout << "\n";
-}
-
-int Span::longestSpan()
+long Span::longestSpan()
 {
         if (box.size() < 2)
                 throw ExceptionShort();
-       std::vector<int>::iterator min = std::min_element(box.begin(), box.end());
-       std::vector<int>::iterator max = std::max_element(box.begin(), box.end());
+        long min = *std::min_element(box.begin(), box.end());
+        long max = *std::max_element(box.begin(), box.end());
 
-       return (*max - *min);
+       return std::abs(max - min);
 }
 
-int Span::shortestSpan()
+long Span::shortestSpan()
 {
         if (box.size() < 2)
                 throw ExceptionShort();
@@ -69,20 +52,19 @@ int Span::shortestSpan()
 
         std::sort(tmp.begin(), tmp.end());
 
-        int shortest = *(tmp.end() - 1) - *tmp.begin();
+        long tobeshortest = static_cast<long>(*(tmp.end() - 1)) - static_cast<long>(*tmp.begin());
         for (std::vector<int>::iterator i = tmp.begin(); i != tmp.end() - 1; i++)
         {
-                int diff = *(i + 1) - *i;
-                if (diff < shortest)
-                        shortest = diff;
+                long diff = static_cast<long>(*(i + 1)) - static_cast<long>(*i);
+                if (diff < tobeshortest)
+                        tobeshortest = diff;
         }
         //print the sorted vector
         // std::cout << std::endl;
         // for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end() ; it++)
         //         std::cout << *it << ", ";
-        return shortest;
+        return tobeshortest;
 }
 Span::~Span()
 {
-
 }

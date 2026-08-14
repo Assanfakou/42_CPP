@@ -1,5 +1,4 @@
-#ifndef MUTANT_STACK
-#define MUTANT_STACK
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -7,11 +6,11 @@
 #include <algorithm>
 
 template <typename T>
-
 class MutantStack : public std::stack<T>
 {
 	public:
-		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::iterator iterator;		
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
 		iterator begin()
 		{
@@ -21,14 +20,21 @@ class MutantStack : public std::stack<T>
 		{
 			return this->c.end();
 		}
-		MutantStack() {}
+		const_iterator begin() const
+		{
+			return this->c.begin();
+		}
+		const_iterator end() const
+		{
+			return this->c.end();
+		}
+		MutantStack(): std::stack<T>() {}
 		MutantStack(const MutantStack &other) : std::stack<T>(other){}
 		MutantStack &operator=(const MutantStack &other)
 		{
-			std::stack<T>::operator=(other);
+			if (this != *other)
+				std::stack<T>::operator=(other);
 			return *this;
 		}
 		~MutantStack() {}
 };
-
-#endif
