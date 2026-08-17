@@ -3,6 +3,7 @@
 #include <iostream>
 
 template <typename T, typename F>
+
 void iter(T* arr, const size_t size, F f)
 {
     if (!arr)
