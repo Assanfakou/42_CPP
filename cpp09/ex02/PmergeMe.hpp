@@ -26,8 +26,9 @@ class PmergeMe
 
         void makePair(std::vector<int> &vect);
         void printPair(std::vector<std::pair<int, int> > &pairs, int leftOver) const;
+        std::vector<size_t> orderInsertiongenV(size_t size) const;
 
-
+        public:
         PmergeMe(void); 
         PmergeMe(char **av, int ac);
 

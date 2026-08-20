@@ -4,16 +4,16 @@ PmergeMe::PmergeMe(void)
 {
 }
 
-void PmergeMe::printPair(std::vector<std::pair<int, int> > &pairs, int leftOver) const
-{
-        std::cout << "Pairs:\n";
-        for (size_t i = 0; i < pairs.size(); i++)
-        {
-                std::cout << "(" << pairs[i].first << ", " << pairs[i].second << ")\n";
-        }
-        if (leftOver != -69)
-                std::cout << "Leftover: " << leftOver << "\n";
-}
+// void PmergeMe::printPair(std::vector<std::pair<int, int> > &pairs, int leftOver) const
+// {
+//         std::cout << "Pairs:\n";
+//         for (size_t i = 0; i < pairs.size(); i++)
+//         {
+//                 std::cout << "(" << pairs[i].first << ", " << pairs[i].second << ")\n";
+//         }
+//         if (leftOver != -69)
+//                 std::cout << "Leftover: " << leftOver << "\n";
+// }
 
 std::vector<PmergeMe::Node> PmergeMe::makeNodes(const std::vector<int>& numbers)
 {
@@ -153,6 +153,33 @@ bool lowerBoundComp(const PmergeMe::Node &a, const PmergeMe::Node &b)
     return a.value < b.value;
 }
 
+std::vector<size_t> PmergeMe::orderInsertiongenV(size_t size) const
+{
+    std::vector<std::size_t> order;
+    if (size == 0)
+        return order;
+    order.push_back(1);
+    std::size_t previos = 1;
+    std::size_t current = 3;
+
+    while (previos < size)
+    {
+        size_t end = current;
+        if (end > size)
+            end = size;
+        size_t i = end;
+        while (i > previos)
+        {
+            order.push_back(i);
+            --i;
+        }
+        size_t next = (previos * 2) + current;
+        previos = current;
+        current = next;
+    }
+    return order;
+}
+
 void PmergeMe::fordJohnson(std::vector<Node> &node)
 {
     if (node.size() <= 1)
@@ -173,40 +200,53 @@ void PmergeMe::fordJohnson(std::vector<Node> &node)
         dragNode = node.back();
         node.pop_back();
     }
-    std::vector<Node> winners;
+    size_t sizeGeneration = node[0].losers.size();
 
-    // winners = getWinner(nodes);
-    printNodes(winners);
-    fordJohnson(winners);
+    fordJohnson(node);
 
+    std::vector<size_t> order = orderInsertiongenV(sizeGeneration);
     std::vector<Node>::iterator place;
 
-    for (size_t i = 0; i < winners.size(); i += 2)
+    for (size_t orderixd = 0; orderixd < order.size(); orderixd++) 
     {
-        Node back = winners[i].losers.back();
-        winners[i].losers.pop_back();
-        place = std::lower_bound(winners.begin(), winners.begin() + i, back, lowerBoundComp);
-        winners.insert(place, back);
+        int target = order[orderixd] - 1;
+        for (size_t i = 0; i < node.size(); i++)
+        {
+            if (sizeGeneration != node[i].losers.size())
+                continue;
+            if (target == 0)
+            {
+                Node back = node[i].losers.back();
+                place = std::lower_bound(node.begin(), node.begin() + i, back, lowerBoundComp);
+                node.insert(place, back);
+            }
+            target--;
+        }
+        for (size_t i = 0; i < node.size(); i++)
+        {
+            if (node[i].losers.size() == sizeGeneration)
+                node[i].losers.pop_back();
+        }
     }
     if (drag)
     {
-        place = std::lower_bound(winners.begin(), winners.end(), drag, lowerBoundComp);
-        winners.insert(place, drag);
+        place = std::lower_bound(node.begin(), node.end(), dragNode, lowerBoundComp);
+        node.insert(place, dragNode);
     }
-    // printNodes(winners);
+    printNodes(node);
 }
 
 void PmergeMe::start()
 {
-        int oddn = -69;
-        std::vector<Node> nodes;
-        if (vect.size() % 2 != 0)
-        {
-            oddn = vect.back();
-            isOdd = true;
-        }
-        else
-            isOdd = false;
+        // int oddn = -69;
+        // std::vector<Node> nodes;
+        // if (vect.size() % 2 != 0)
+        // {
+        //     oddn = vect.back();
+        //     isOdd = true;
+        // }
+        // else
+        //     isOdd = false;
 
         fordJohnson(node);
         printNodes(node);
