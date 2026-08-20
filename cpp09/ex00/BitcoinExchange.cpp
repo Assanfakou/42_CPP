@@ -81,8 +81,11 @@ bool BitcoinExchange::check_value(const std::string& value, float &result)
 	int dot = 0;
 	for (size_t i = 0; i < value.size(); i++)
 	{
-		if (i == 0 && value[i] == '-')
-			continue;
+		if (value[i] == '-')
+		{
+			std::cout << "postive number only\n";
+			break ;
+		}
 		if (value[i] == '.')
 		{
 			dot++;
