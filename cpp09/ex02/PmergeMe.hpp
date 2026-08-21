@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <deque>
+#include <sys/time.h>
 
 class PmergeMe
 {
@@ -37,17 +38,20 @@ class PmergeMe
         std::vector<size_t> orderInsertiongenV(size_t size) const;
         void fordJohnsonVector(std::vector<v_Node> &nodes);
         void makePairVector(std::vector<v_Node> &nodes);
-        bool lowerBoundCompVector(const v_Node &a, const v_Node &b);
+        void printNodeVector(const v_Node &node, const std::string &prefix, bool last);
+        void printNodesVector(const std::vector<v_Node> &nodes);
 
-        bool lowerBoundCompDeque(const d_Node &a, const d_Node &b);
-        std::vector<size_t> orderInsertiongenD(size_t size) const;
-        void fordJohnsonDeque(std::vector<v_Node> &nodes);
-        void makePairDeque(std::deque<v_Node> &nodes);
+        std::deque<size_t> orderInsertiongenD(size_t size) const;
+        void fordJohnsonDeque(std::deque<d_Node> &nodes);
+        void makePairDeque(std::deque<d_Node> &nodes);
+        void printNodeDeque(const d_Node &node, const std::string &prefix, bool last);
+        void printNodesDeque(const std::deque<d_Node> &nodes);
 
-
+        void printMessage();
+        long long getTime();
         void start();
 
-        public:
+      public:
         PmergeMe(void); 
         PmergeMe(char **av, int ac);
 
