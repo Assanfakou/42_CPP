@@ -1,8 +1,8 @@
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(void)
 {
-		
 }
 
 BitcoinExchange::BitcoinExchange(const std::string &filename)
@@ -32,6 +32,7 @@ void BitcoinExchange::print_map()
 		std::cout << it->first << " " << it->second << std::endl;
 	}
 }
+
 bool BitcoinExchange::check_date(const std::string& date)
 {
 	if (date.size() != 10)
@@ -62,7 +63,7 @@ bool BitcoinExchange::check_date(const std::string& date)
 		{
 			if (day > 29)
 				return false;
-			if ((year % 100) % 4 != 0 && day == 29)
+			if ((year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
 				return false;
 		}
 	}
@@ -139,13 +140,22 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 	// print_map();
 }
 
+std::string BitcoinExchange::trim(const std::string &str) const
+{
+    std::size_t start = 0;
+    std::size_t end = str.length();
+
+    while (start < end && std::isspace(str[start]))
+        start++;
+    while (end > start && std::isspace(str[end - 1]))
+        end--;
+    return str.substr(start, end - start);
+}
+
 void BitcoinExchange::processInput(const std::string &filename)
 {
 	std::ifstream inputFile(filename.c_str());
 	std::string line;
-	std::string date;
-	std::string amount;
-	size_t delemeter = 0;
 
 	if (!inputFile.is_open())
 		throw FileIssue();
@@ -153,46 +163,59 @@ void BitcoinExchange::processInput(const std::string &filename)
 	while (std::getline(inputFile, line))
 	{
 		float num;
-		delemeter = line.find(' ');
-		if (delemeter == std::string::npos)
-		{
-			std::cout << "there is not delemeter found\n";
-			continue;
-		}
-		date = line.substr(0, delemeter);
-		amount = line.substr(delemeter + 3);
+
+		std::stringstream ss(line);
+		std::string date;
+        std::string value;
+
+        if (line.find('|') == std::string::npos)
+        {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        std::getline(ss, date, '|');
+        std::getline(ss, value);
+
+
+        date = trim(date);
+        value = trim(value);
+
 		if (!check_date(date))
 		{
 			std::cerr << "Error : bad Formula => " << date << "\n";
 			continue;
 		}
-		if (!check_value(amount, num))
+		if (!check_value(value, num))
 			continue;
-		std::cout << date << " => " << amount << " = " << getRate(date) * num << std::endl;
+		std::cout << std::fixed;
+		std::cout << std::setprecision(0);
+		std::cout << date << " => " << value << " = " << getRate(date) * num << std::endl;
 		// std::cout << getRate(date) << std::endl;
 		// std::cout << date << " " << amount << " \n";
 	}
 }
+
 float BitcoinExchange::getRate(const std::string& date)
 {
 	std::map<std::string, float>::iterator it;
 
 	it = data.lower_bound(date);
-	if (it->first == date && it != data.end())
-		return it->second;
-	else
-	{
-		if (it == data.begin())
-		{
-			std::cerr << "Error : can't step back " << date << "\n";
-			return 0;
-		}
+
+	if (it != data.end() && it->first == date)
+		return (it->second);
+
+	if (it == data.begin())
+		return (it->second);
+
+	if (it == data.end())
 		--it;
-	}
-	return (it->second);
+	else
+		--it;
 
 	return (it->second);
 }
+
+
 const char* BitcoinExchange::FileIssue::what() const throw()
 {
 	return "FIle Issue";

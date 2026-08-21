@@ -2,9 +2,11 @@
 
 int main (int ac, char *av[])
 {
-	(void)ac;
-	if (ac < 2)
+	if (ac != 2 )
+	{
+		std::cout << "Error: could not open file.\n";
 		return 1;
+	}
 	try
 	{
 		BitcoinExchange btc;
