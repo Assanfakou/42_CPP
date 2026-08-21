@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp PmergeMe.cpp 
+SRC = main.cpp PmergeMe.cpp dequeImple.cpp vectorimple.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
